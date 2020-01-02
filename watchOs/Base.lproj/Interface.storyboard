@@ -34,6 +34,21 @@
                                 <action selector="onTouchUp" destination="oin-ub-31X" id="1pR-sM-MtS"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="left" id="WV2-Tt-Oud">
+                            <connections>
+                                <action selector="onTouchLeft" destination="oin-ub-31X" id="puL-0V-8Q2"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="right" id="o2x-X3-rzu">
+                            <connections>
+                                <action selector="onTouchRight" destination="oin-ub-31X" id="pk3-oK-xX1"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="down" id="nPH-2z-7DI">
+                            <connections>
+                                <action selector="onTouchDown" destination="oin-ub-31X" id="gCb-R7-kaV"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="messageLabel" destination="rzz-8R-wME" id="PQf-dQ-0nX"/>

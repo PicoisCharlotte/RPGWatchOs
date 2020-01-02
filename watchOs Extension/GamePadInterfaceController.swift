@@ -42,6 +42,45 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
         }
     }
     
+    @IBAction func onTouchLeft() {
+        if isReachable() {
+            session.sendMessage(["request" : "left"], replyHandler: {reply in
+                self.messageLabel.setText(reply["version"] as? String)
+            }, errorHandler: {error in
+                // catch any errors here
+                print("ERROR : ", error)
+            })
+        } else {
+            print("IPhone is not reachable")
+        }
+    }
+    
+    @IBAction func onTouchRight() {
+        if isReachable() {
+            session.sendMessage(["request" : "right"], replyHandler: {reply in
+                self.messageLabel.setText(reply["version"] as? String)
+            }, errorHandler: {error in
+                // catch any errors here
+                print("ERROR : ", error)
+            })
+        } else {
+            print("IPhone is not reachable")
+        }
+    }
+    
+    @IBAction func onTouchDown() {
+        if isReachable() {
+            session.sendMessage(["request" : "down"], replyHandler: {reply in
+                self.messageLabel.setText(reply["version"] as? String)
+            }, errorHandler: {error in
+                // catch any errors here
+                print("ERROR : ", error)
+            })
+        } else {
+            print("IPhone is not reachable")
+        }
+    }
+    
     private func isReachable() -> Bool {
         return session.isReachable
     }

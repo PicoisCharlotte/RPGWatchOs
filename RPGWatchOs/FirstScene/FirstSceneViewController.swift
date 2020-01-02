@@ -70,9 +70,40 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "up pressed"
-                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y += 50})
+                //if(self.imageView.frame.maxY > 180) {
+                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y -= 30})
+               // } else {
+                  //  print("Image goes out of screen on the top")
+               // }
             }
             
+        }
+        
+        if message["request"] as? String == "left" {
+            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
+            DispatchQueue.main.async {
+                self.label.text = "left pressed"
+                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.x -= 30})
+            }
+        }
+        
+        if message["request"] as? String == "right" {
+            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
+            DispatchQueue.main.async {
+                self.label.text = "right pressed"
+                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.x += 30})
+            }
+        }
+        
+        if message["request"] as? String == "down" {
+            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
+            DispatchQueue.main.async {
+                self.label.text = "down pressed"
+                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y += 30})
+            }
         }
     }
 }
