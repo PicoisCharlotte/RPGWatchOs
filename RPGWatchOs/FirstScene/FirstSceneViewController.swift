@@ -17,10 +17,9 @@ class FirstSceneViewController: UIViewController {
     
     @IBOutlet var label: UILabel!
     
-    @IBAction func touchUP() {
-        UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y += 50})
-    }
+    @IBOutlet var gameArea: UIView!
     
+   
     func isSuported() -> Bool {
         return WCSession.isSupported()
     }
@@ -36,14 +35,6 @@ class FirstSceneViewController: UIViewController {
             session.activate()
         }
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
-
-        let screenWidth = screensize.width
-        let screenHeight = screensize.height
-        
-        print("width : ", screenWidth)
-        print("height : ", screenHeight)
-
-        
     }
 
 }
@@ -70,13 +61,13 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "up pressed"
-                //if(self.imageView.frame.maxY > 180) {
+                if(self.imageView.frame.minY + self.imageView.frame.height > self.gameArea.frame.minY) {
                 UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y -= 30})
-               // } else {
-                  //  print("Image goes out of screen on the top")
-               // }
+                } else {
+                    print("Image goes out of screen on the top")
+                }
             }
-            
+          
         }
         
         if message["request"] as? String == "left" {
@@ -84,7 +75,11 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "left pressed"
+                if(self.imageView.frame.maxX - self.imageView.frame.width > self.gameArea.frame.minX) {
                 UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.x -= 30})
+                } else {
+                     print("Image goes out of screen on the left")
+                }
             }
         }
         
@@ -92,8 +87,12 @@ extension FirstSceneViewController: WCSessionDelegate {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
             DispatchQueue.main.async {
+                if (self.imageView.frame.maxX < self.gameArea.frame.maxX) {
                 self.label.text = "right pressed"
                 UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.x += 30})
+                } else {
+                    print("Image goes out of screen on the right")
+                }
             }
         }
         
@@ -102,8 +101,13 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "down pressed"
+                if(self.imageView.frame.maxY < self.gameArea.frame.maxY) {
                 UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y += 30})
+                } else {
+                    print("Image goes out of screen on the bottom")
+                }
             }
         }
     }
+    
 }
