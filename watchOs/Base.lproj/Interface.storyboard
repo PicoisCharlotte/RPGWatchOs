@@ -14,19 +14,30 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchOs" customModuleProvider="target">
                     <items>
-                        <button width="1" alignment="left" title="Play" id="zX7-Kn-WB2">
+                        <button width="1" alignment="left" title="Move" id="zX7-Kn-WB2">
                             <connections>
-                                <action selector="onTouchPlay" destination="AgC-eL-Hgc" id="z2W-dk-la4"/>
+                                <action selector="onTouchMove" destination="AgC-eL-Hgc" id="qV2-Sp-qyW"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Fight/Action" id="s3k-lY-uDd">
+                            <connections>
+                                <action selector="onTouchFightAction" destination="AgC-eL-Hgc" id="1pW-Ut-N1J"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Inventory" id="RP6-TQ-Jxa">
+                            <connections>
+                                <action selector="onTouchInventory" destination="AgC-eL-Hgc" id="z8g-Mn-H15"/>
                             </connections>
                         </button>
                     </items>
                 </controller>
             </objects>
+            <point key="canvasLocation" x="-78" y="248"/>
         </scene>
-        <!--play-->
+        <!--move-->
         <scene sceneID="LW7-dd-3LU">
             <objects>
-                <controller identifier="play" id="oin-ub-31X" customClass="GamePadInterfaceController" customModule="watchOs_Extension">
+                <controller identifier="move" id="oin-ub-31X" customClass="GamePadInterfaceController" customModule="watchOs_Extension">
                     <items>
                         <label alignment="left" text="Label" id="rzz-8R-wME"/>
                         <button width="1" alignment="left" title="up" id="IVB-fu-Hoy">
@@ -56,7 +67,47 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="292" y="36"/>
+            <point key="canvasLocation" x="248" y="-76"/>
+        </scene>
+        <!--fight/action-->
+        <scene sceneID="ypn-eY-08A">
+            <objects>
+                <controller identifier="fight/action" id="dgF-W4-qaq" customClass="FightActionInterfaceContoller" customModule="watchOs_Extension">
+                    <items>
+                        <button width="1" alignment="left" title="Fight" id="IQ3-zT-Ooe">
+                            <connections>
+                                <action selector="onTouchFight" destination="dgF-W4-qaq" id="dIu-Ly-x5E"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Action" id="YOk-PD-AJp">
+                            <connections>
+                                <action selector="onTouchAction" destination="dgF-W4-qaq" id="AGN-Rd-mUz"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="248" y="248"/>
+        </scene>
+        <!--inventory-->
+        <scene sceneID="pXn-kQ-qZt">
+            <objects>
+                <controller identifier="inventory" id="hJp-Qh-y6G" customClass="InventoryInterfaceController" customModule="watchOs_Extension">
+                    <items>
+                        <table alignment="left" id="1pu-Qc-gfx">
+                            <items>
+                                <tableRow id="ebf-5H-eCY">
+                                    <group key="rootItem" width="1" alignment="left" id="FqC-cF-Hhu"/>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="inventoryTableView" destination="1pu-Qc-gfx" id="Yke-m1-hYS"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="248" y="560"/>
         </scene>
     </scenes>
 </document>

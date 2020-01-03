@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FirstSceneViewController" customModule="RPGWatchOs" customModuleProvider="target">
             <connections>
+                <outlet property="chest" destination="Yvc-kK-WBh" id="KHb-9V-63E"/>
                 <outlet property="gameArea" destination="zK0-RS-zfk" id="k5Q-cd-ZaQ"/>
                 <outlet property="imageView" destination="OIh-ah-2bH" id="fSM-3m-N9J"/>
                 <outlet property="label" destination="ymT-vS-rQs" id="CUX-z9-wwu"/>
@@ -41,6 +42,10 @@
                     <rect key="frame" x="161" y="122" width="78" height="57"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chest" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-kK-WBh">
+                    <rect key="frame" x="156" y="309" width="62" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -55,5 +60,6 @@
     </objects>
     <resources>
         <image name="cat" width="503" height="500"/>
+        <image name="chest" width="600" height="395"/>
     </resources>
 </document>

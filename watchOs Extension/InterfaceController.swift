@@ -12,12 +12,24 @@ import WatchConnectivity
 
 class InterfaceController: WKInterfaceController {
 let session = WCSession.default
-    @IBAction func onTouchPlay() {
-        
+  
+    @IBAction func onTouchMove() {
         if session.isReachable {
-            self.pushController(withName: "play", context: "Pad")
+            self.pushController(withName: "move", context: "Pad")
         }
     }
+    @IBAction func onTouchFightAction() {
+        if session.isReachable {
+            self.pushController(withName: "fight/action", context: "Pad")
+        }
+    }
+    
+    @IBAction func onTouchInventory() {
+        if session.isReachable {
+            self.pushController(withName: "inventory", context: "Pad")
+        }
+    }
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         

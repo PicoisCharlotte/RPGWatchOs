@@ -14,6 +14,7 @@ class FirstSceneViewController: UIViewController {
     let screensize: CGRect = UIScreen.main.bounds
     private var session = WCSession.default
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var chest: UIImageView!
     
     @IBOutlet var label: UILabel!
     
