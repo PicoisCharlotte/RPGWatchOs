@@ -21,6 +21,7 @@
 		1D0C136823BCFC08009F0C28 /* FirstSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */; };
 		1D0C136A23BD00DA009F0C28 /* GamePadInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C136923BD00DA009F0C28 /* GamePadInterfaceController.swift */; };
 		1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C136B23BD0708009F0C28 /* RedrawImageView.swift */; };
+		1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */; };
 		1DD9A76823BFAED500639B23 /* FightActionInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76723BFAED500639B23 /* FightActionInterfaceController.swift */; };
 		1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstSceneViewController.xib; sourceTree = "<group>"; };
 		1D0C136923BD00DA009F0C28 /* GamePadInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePadInterfaceController.swift; sourceTree = "<group>"; };
 		1D0C136B23BD0708009F0C28 /* RedrawImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawImageView.swift; sourceTree = "<group>"; };
+		1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableRowController.swift; sourceTree = "<group>"; };
 		1DD9A76723BFAED500639B23 /* FightActionInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightActionInterfaceController.swift; sourceTree = "<group>"; };
 		1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +160,7 @@
 				1D0C136923BD00DA009F0C28 /* GamePadInterfaceController.swift */,
 				1DD9A76723BFAED500639B23 /* FightActionInterfaceController.swift */,
 				1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */,
+				1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */,
 				1D0C135423BCFBD6009F0C28 /* ExtensionDelegate.swift */,
 				1D0C135623BCFBD7009F0C28 /* Assets.xcassets */,
 				1D0C135823BCFBD7009F0C28 /* Info.plist */,
@@ -318,6 +321,7 @@
 			files = (
 				1DD9A76823BFAED500639B23 /* FightActionInterfaceController.swift in Sources */,
 				1D0C135523BCFBD6009F0C28 /* ExtensionDelegate.swift in Sources */,
+				1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */,
 				1D0C136A23BD00DA009F0C28 /* GamePadInterfaceController.swift in Sources */,
 				1D0C135323BCFBD6009F0C28 /* InterfaceController.swift in Sources */,
 				1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */,

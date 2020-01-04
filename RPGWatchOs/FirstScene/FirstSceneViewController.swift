@@ -12,11 +12,18 @@ import WatchConnectivity
 
 class FirstSceneViewController: UIViewController {
     let screensize: CGRect = UIScreen.main.bounds
+    
+    @IBOutlet var label: UILabel!
+    
+    private var totalMonsterOnMap = 0
+    private var allMonstersBeaten: Bool = true
+    
     private var session = WCSession.default
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var chest: UIImageView!
     
-    @IBOutlet var label: UILabel!
+    @IBOutlet var redKey: UIImageView!
+    
     
     @IBOutlet var gameArea: UIView!
     
@@ -55,6 +62,13 @@ extension FirstSceneViewController: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        DispatchQueue.main.async {
+            if self.allMonstersBeaten {
+                self.chest.image = UIImage(named: "chest")
+            }
+        }
+        
         
         if message["request"] as? String == "up" {
             
@@ -107,6 +121,23 @@ extension FirstSceneViewController: WCSessionDelegate {
                 } else {
                     print("Image goes out of screen on the bottom")
                 }
+            }
+        }
+        
+        if message["request"] as? String == "action" {
+            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
+            DispatchQueue.main.async {
+                self.label.text = "action pressed"
+            
+                print("self.imageView.frame.minY : ", self.imageView.frame.minY)
+                print("self.chest.frame.maxY : ", self.chest.frame.maxY)
+                
+                if self.totalMonsterOnMap == 0 {
+                    self.redKey.image = UIImage(named: "redKey")
+                }
+                
+                
             }
         }
     }

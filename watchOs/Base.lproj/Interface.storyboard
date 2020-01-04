@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--main-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchOs" customModuleProvider="target">
+                <controller identifier="main" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchOs" customModuleProvider="target">
                     <items>
                         <button width="1" alignment="left" title="Move" id="zX7-Kn-WB2">
                             <connections>
@@ -60,9 +60,14 @@
                                 <action selector="onTouchDown" destination="oin-ub-31X" id="gCb-R7-kaV"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="BACK" id="Zlx-6k-A2D">
+                            <connections>
+                                <action selector="backButton" destination="oin-ub-31X" id="ntl-IG-dvf"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
-                        <outlet property="messageLabel" destination="rzz-8R-wME" id="PQf-dQ-0nX"/>
+                        <outlet property="label" destination="rzz-8R-wME" id="xi2-mW-oIs"/>
                         <outlet property="sendButton" destination="IVB-fu-Hoy" id="jfs-s6-d6H"/>
                     </connections>
                 </controller>
@@ -74,6 +79,7 @@
             <objects>
                 <controller identifier="fight/action" id="dgF-W4-qaq" customClass="FightActionInterfaceContoller" customModule="watchOs_Extension">
                     <items>
+                        <label width="40" alignment="left" text="Label" id="f36-Sv-Y6J"/>
                         <button width="1" alignment="left" title="Fight" id="IQ3-zT-Ooe">
                             <connections>
                                 <action selector="onTouchFight" destination="dgF-W4-qaq" id="dIu-Ly-x5E"/>
@@ -84,7 +90,15 @@
                                 <action selector="onTouchAction" destination="dgF-W4-qaq" id="AGN-Rd-mUz"/>
                             </connections>
                         </button>
+                        <button width="1" alignment="left" title="BACK" id="dsf-1l-GBM">
+                            <connections>
+                                <action selector="backButton" destination="dgF-W4-qaq" id="Eqx-5x-Khe"/>
+                            </connections>
+                        </button>
                     </items>
+                    <connections>
+                        <outlet property="label" destination="f36-Sv-Y6J" id="L8T-Lb-ejZ"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="248" y="248"/>
@@ -96,14 +110,21 @@
                     <items>
                         <table alignment="left" id="1pu-Qc-gfx">
                             <items>
-                                <tableRow id="ebf-5H-eCY">
-                                    <group key="rootItem" width="1" alignment="left" id="FqC-cF-Hhu"/>
+                                <tableRow identifier="inventoryCell" id="ebf-5H-eCY" customClass="InventoryTableRowController" customModule="watchOs_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="FqC-cF-Hhu">
+                                        <items>
+                                            <label width="40" alignment="left" text="Label" id="LTi-ZQ-HiC"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="inventoryCell" destination="LTi-ZQ-HiC" id="UXe-io-GiV"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
                     <connections>
-                        <outlet property="inventoryTableView" destination="1pu-Qc-gfx" id="Yke-m1-hYS"/>
+                        <outlet property="inventoryTableView" destination="1pu-Qc-gfx" id="pgo-gv-Opt"/>
                     </connections>
                 </controller>
             </objects>

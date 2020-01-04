@@ -15,7 +15,8 @@
                 <outlet property="chest" destination="Yvc-kK-WBh" id="KHb-9V-63E"/>
                 <outlet property="gameArea" destination="zK0-RS-zfk" id="k5Q-cd-ZaQ"/>
                 <outlet property="imageView" destination="OIh-ah-2bH" id="fSM-3m-N9J"/>
-                <outlet property="label" destination="ymT-vS-rQs" id="CUX-z9-wwu"/>
+                <outlet property="label" destination="ymT-vS-rQs" id="XPK-Vp-MEl"/>
+                <outlet property="redKey" destination="xAo-Cj-R12" id="Mkd-8D-EBG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,16 +35,20 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAo-Cj-R12">
+                            <rect key="frame" x="67" y="352" width="76" height="79"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-kK-WBh">
+                            <rect key="frame" x="156" y="248" width="62" height="48"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="oQe-kr-f0V"/>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-ah-2bH">
-                    <rect key="frame" x="161" y="122" width="78" height="57"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chest" translatesAutoresizingMaskIntoConstraints="NO" id="Yvc-kK-WBh">
-                    <rect key="frame" x="156" y="309" width="62" height="48"/>
+                    <rect key="frame" x="161" y="135" width="55" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
@@ -59,7 +64,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cat" width="503" height="500"/>
-        <image name="chest" width="600" height="395"/>
+        <image name="cat" width="426" height="303"/>
     </resources>
 </document>

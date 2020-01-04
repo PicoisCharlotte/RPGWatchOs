@@ -13,19 +13,31 @@ import WatchKit
 class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     private var session = WCSession.default
 
-    @IBOutlet var messageLabel: WKInterfaceLabel!
+    @IBOutlet var label: WKInterfaceLabel!
     @IBOutlet var sendButton: WKInterfaceButton!
     
+    private func isReachable() -> Bool {
+        return session.isReachable
+    }
+    
+    @IBAction func backButton() {
+        if session.isReachable {
+            self.pushController(withName: "main", context: "Pad")
+        }
+    }
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        
+        print("awake")
+
     }
     
     func manageDirection(direction: String) {
         if isReachable() {
             print("IPhone is reachable")
             session.sendMessage(["request" : direction], replyHandler: {reply in
-                self.messageLabel.setText(reply["version"] as? String)
+                self.label.setText(reply["version"] as? String)
             }, errorHandler: {error in
                 // catch any errors here
                 print("ERROR : ", error)
@@ -34,6 +46,8 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
             print("IPhone is not reachable")
         }
     }
+    
+    
     
     @IBAction func onTouchUp() {
         manageDirection(direction: "up")
@@ -51,9 +65,7 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
        manageDirection(direction: "down")
     }
     
-    private func isReachable() -> Bool {
-        return session.isReachable
-    }
+    
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
@@ -75,7 +87,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
+        print("back is pressed")
     }
-
 }
