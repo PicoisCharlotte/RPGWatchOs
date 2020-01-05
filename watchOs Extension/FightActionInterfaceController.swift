@@ -15,6 +15,8 @@ class FightActionInterfaceContoller: WKInterfaceController, WCSessionDelegate {
     
     private var itemList: [String] = []
     
+    var hasBeenCalled = false
+    
    
     @IBOutlet var label: WKInterfaceLabel!
     
@@ -33,6 +35,7 @@ class FightActionInterfaceContoller: WKInterfaceController, WCSessionDelegate {
     @IBAction func onTouchAction() {
         if isReachable() {
             print("IPhone is reachable")
+        
             session.sendMessage(["request" : "action"], replyHandler: {reply in
                 self.label.setText(reply["version"] as? String)
             }, errorHandler: {error in
@@ -52,6 +55,7 @@ class FightActionInterfaceContoller: WKInterfaceController, WCSessionDelegate {
         return session.isReachable
     }
     
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
@@ -60,6 +64,10 @@ class FightActionInterfaceContoller: WKInterfaceController, WCSessionDelegate {
             session.delegate = self
             session.activate()
         }
+    }
+    
+    func called() -> Bool{
+        return hasBeenCalled
     }
     
     private func isSuported() -> Bool {

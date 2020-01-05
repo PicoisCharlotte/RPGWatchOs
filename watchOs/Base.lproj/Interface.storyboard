@@ -108,12 +108,13 @@
             <objects>
                 <controller identifier="inventory" id="hJp-Qh-y6G" customClass="InventoryInterfaceController" customModule="watchOs_Extension">
                     <items>
+                        <label alignment="left" text="Label" id="RTU-JS-DVN"/>
                         <table alignment="left" id="1pu-Qc-gfx">
                             <items>
                                 <tableRow identifier="inventoryCell" id="ebf-5H-eCY" customClass="InventoryTableRowController" customModule="watchOs_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="FqC-cF-Hhu">
                                         <items>
-                                            <label width="40" alignment="left" text="Label" id="LTi-ZQ-HiC"/>
+                                            <label width="123" alignment="left" text="Label" id="LTi-ZQ-HiC"/>
                                         </items>
                                     </group>
                                     <connections>
@@ -125,6 +126,7 @@
                     </items>
                     <connections>
                         <outlet property="inventoryTableView" destination="1pu-Qc-gfx" id="pgo-gv-Opt"/>
+                        <outlet property="label" destination="RTU-JS-DVN" id="5zy-KW-803"/>
                     </connections>
                 </controller>
             </objects>
