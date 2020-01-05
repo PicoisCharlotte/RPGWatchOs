@@ -79,7 +79,7 @@
             <objects>
                 <controller identifier="fight/action" id="dgF-W4-qaq" customClass="FightActionInterfaceContoller" customModule="watchOs_Extension">
                     <items>
-                        <label width="40" alignment="left" text="Label" id="f36-Sv-Y6J"/>
+                        <label width="136" alignment="left" id="f36-Sv-Y6J"/>
                         <button width="1" alignment="left" title="Fight" id="IQ3-zT-Ooe">
                             <connections>
                                 <action selector="onTouchFight" destination="dgF-W4-qaq" id="dIu-Ly-x5E"/>

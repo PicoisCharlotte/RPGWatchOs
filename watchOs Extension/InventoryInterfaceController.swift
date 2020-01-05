@@ -36,9 +36,4 @@ class InventoryInterfaceController: WKInterfaceController {
     func addRowInInventory(item: String) {
         Inventory.sharedInventory.addItem(item: item)
     }
-    
-  
-    
-    
-
 }

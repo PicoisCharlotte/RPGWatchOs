@@ -66,6 +66,8 @@ extension FirstSceneViewController: WCSessionDelegate {
         DispatchQueue.main.async {
             if self.allMonstersBeaten {
                 self.chest.image = UIImage(named: "chest")
+              
+                
             }
         }
         
@@ -77,7 +79,7 @@ extension FirstSceneViewController: WCSessionDelegate {
             DispatchQueue.main.async {
                 self.label.text = "up pressed"
                 if(self.imageView.frame.minY + self.imageView.frame.height > self.gameArea.frame.minY) {
-                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y -= 30})
+                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.y -= 30})
                 } else {
                     print("Image goes out of screen on the top")
                 }
@@ -91,7 +93,7 @@ extension FirstSceneViewController: WCSessionDelegate {
             DispatchQueue.main.async {
                 self.label.text = "left pressed"
                 if(self.imageView.frame.maxX - self.imageView.frame.width > self.gameArea.frame.minX) {
-                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.x -= 30})
+                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.x -= 30})
                 } else {
                      print("Image goes out of screen on the left")
                 }
@@ -104,7 +106,7 @@ extension FirstSceneViewController: WCSessionDelegate {
             DispatchQueue.main.async {
                 if (self.imageView.frame.maxX < self.gameArea.frame.maxX) {
                 self.label.text = "right pressed"
-                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.x += 30})
+                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.x += 30})
                 } else {
                     print("Image goes out of screen on the right")
                 }
@@ -116,8 +118,8 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "down pressed"
-                if(self.imageView.frame.maxY < self.gameArea.frame.maxY) {
-                UIView.animate(withDuration: 0.75, animations: {self.imageView.frame.origin.y += 30})
+                if self.imageView.frame.maxY < self.gameArea.frame.maxY {
+                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.y += 30})
                 } else {
                     print("Image goes out of screen on the bottom")
                 }
@@ -125,19 +127,16 @@ extension FirstSceneViewController: WCSessionDelegate {
         }
         
         if message["request"] as? String == "action" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
             
             DispatchQueue.main.async {
+                let disposition = self.imageView.frame.maxY - 123
                 self.label.text = "action pressed"
-            
-                print("self.imageView.frame.minY : ", self.imageView.frame.minY)
-                print("self.chest.frame.maxY : ", self.chest.frame.maxY)
                 
-                if self.totalMonsterOnMap == 0 {
+                if self.totalMonsterOnMap == 0  && disposition == self.chest.frame.maxY {
                     self.redKey.image = UIImage(named: "redKey")
-                }
-                
-                
+                    replyHandler(["item" : "redkey dropped"])
+                }                
             }
         }
     }
