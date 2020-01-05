@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02BCF42123C225AC0044A351 /* InventoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF42023C225AC0044A351 /* InventoryManager.swift */; };
 		1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */; };
 		1D0C133523BCFBB2009F0C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C133423BCFBB2009F0C28 /* Assets.xcassets */; };
 		1D0C133823BCFBB2009F0C28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C133623BCFBB2009F0C28 /* LaunchScreen.storyboard */; };
@@ -69,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02BCF42023C225AC0044A351 /* InventoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryManager.swift; sourceTree = "<group>"; };
 		1D0C132A23BCFBB0009F0C28 /* RPGWatchOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGWatchOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1D0C133423BCFBB2009F0C28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				1D0C135423BCFBD6009F0C28 /* ExtensionDelegate.swift */,
 				1D0C135623BCFBD7009F0C28 /* Assets.xcassets */,
 				1D0C135823BCFBD7009F0C28 /* Info.plist */,
+				02BCF42023C225AC0044A351 /* InventoryManager.swift */,
 			);
 			path = "watchOs Extension";
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				1DD9A76823BFAED500639B23 /* FightActionInterfaceController.swift in Sources */,
 				1D0C135523BCFBD6009F0C28 /* ExtensionDelegate.swift in Sources */,
 				1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */,
+				02BCF42123C225AC0044A351 /* InventoryManager.swift in Sources */,
 				1D0C136A23BD00DA009F0C28 /* GamePadInterfaceController.swift in Sources */,
 				1D0C135323BCFBD6009F0C28 /* InterfaceController.swift in Sources */,
 				1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */,
