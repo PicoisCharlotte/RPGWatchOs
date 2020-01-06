@@ -43,7 +43,7 @@ class FightActionInterfaceContoller: WKInterfaceController, WCSessionDelegate {
                 print("ERROR : ", error)
                 
             })
-            self.inventoryInterfaceController.addRowInInventory(item: "red key")
+            self.inventoryInterfaceController.addRowInInventory(item: "yellow key")
             
         } else {
             print("IPhone is not reachable")

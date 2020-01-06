@@ -9,25 +9,30 @@
 import UIKit
 import WatchConnectivity
 
-
 class FirstSceneViewController: UIViewController {
     let screensize: CGRect = UIScreen.main.bounds
     
+    
+    var babyMonsterDeclaration: Monster = Monster.TypeMonster.babyMonster.instance
+    var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
+    var heroDeclaration: Hero = Hero(hp: 30, damage: 5)
+
     @IBOutlet var label: UILabel!
     
     private var totalMonsterOnMap = 0
-    private var allMonstersBeaten: Bool = true
+    private var allMonstersBeaten: Bool = false
     
     private var session = WCSession.default
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var chest: UIImageView!
-    
-    @IBOutlet var redKey: UIImageView!
-    
+    @IBOutlet var lock: UIImageView!
     
     @IBOutlet var gameArea: UIView!
     
-   
+    @IBOutlet var babyMonster: UIImageView!
+    @IBOutlet var juniorMonster: UIImageView!
+    @IBOutlet var hero: UIImageView!
+    
     func isSuported() -> Bool {
         return WCSession.isSupported()
     }
@@ -37,11 +42,20 @@ class FirstSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+       
         if isSuported() {
             session.delegate = self
             session.activate()
         }
+         var monsters: [Monster] = [self.babyMonsterDeclaration, self.juniorMonsterDeclaration]
+        totalMonsterOnMap = monsters.count
+        
+        hero.image = heroDeclaration.imageHero
+        babyMonster.image = babyMonsterDeclaration.imageMonster
+        juniorMonster.image = juniorMonsterDeclaration.imageMonster
+        lock.image = UIImage(named: "yellowlocklocked")
+        
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
     }
 
@@ -64,11 +78,11 @@ extension FirstSceneViewController: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         
         DispatchQueue.main.async {
-            if self.allMonstersBeaten {
+            if self.totalMonsterOnMap == 0 {
                 self.chest.image = UIImage(named: "chest")
-              
-                
+                print(self.totalMonsterOnMap)
             }
+            print(self.totalMonsterOnMap)
         }
         
         
@@ -127,15 +141,12 @@ extension FirstSceneViewController: WCSessionDelegate {
         }
         
         if message["request"] as? String == "action" {
-            
-            
             DispatchQueue.main.async {
                 let disposition = self.imageView.frame.maxY - 123
                 self.label.text = "action pressed"
                 
                 if self.totalMonsterOnMap == 0  && disposition == self.chest.frame.maxY {
-                    self.redKey.image = UIImage(named: "redKey")
-                    replyHandler(["item" : "redkey dropped"])
+                    replyHandler(["item" : "yellow key dropped"])
                 }                
             }
         }

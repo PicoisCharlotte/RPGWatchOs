@@ -39,22 +39,34 @@
             <objects>
                 <controller identifier="move" id="oin-ub-31X" customClass="GamePadInterfaceController" customModule="watchOs_Extension">
                     <items>
-                        <label alignment="left" text="Label" id="rzz-8R-wME"/>
+                        <group width="1" alignment="left" id="5lx-1v-NBz">
+                            <items>
+                                <label alignment="left" text="Label" id="rzz-8R-wME"/>
+                                <button width="30" height="30" alignment="right" backgroundImage="icon-chest" id="z2F-Ah-6ym">
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </button>
+                            </items>
+                        </group>
                         <button width="1" alignment="left" title="up" id="IVB-fu-Hoy">
                             <connections>
                                 <action selector="onTouchUp" destination="oin-ub-31X" id="1pR-sM-MtS"/>
                             </connections>
                         </button>
-                        <button width="1" alignment="left" title="left" id="WV2-Tt-Oud">
-                            <connections>
-                                <action selector="onTouchLeft" destination="oin-ub-31X" id="puL-0V-8Q2"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="right" id="o2x-X3-rzu">
-                            <connections>
-                                <action selector="onTouchRight" destination="oin-ub-31X" id="pk3-oK-xX1"/>
-                            </connections>
-                        </button>
+                        <group width="1" alignment="left" id="oqh-ky-MEh">
+                            <items>
+                                <button alignment="left" title="&lt;" id="WV2-Tt-Oud">
+                                    <connections>
+                                        <action selector="onTouchLeft" destination="oin-ub-31X" id="puL-0V-8Q2"/>
+                                    </connections>
+                                </button>
+                                <button alignment="right" title="&gt;" id="o2x-X3-rzu">
+                                    <connections>
+                                        <action selector="onTouchRight" destination="oin-ub-31X" id="pk3-oK-xX1"/>
+                                    </connections>
+                                </button>
+                                <button alignment="center" title="Action" id="Edy-XT-d1q"/>
+                            </items>
+                        </group>
                         <button width="1" alignment="left" title="down" id="nPH-2z-7DI">
                             <connections>
                                 <action selector="onTouchDown" destination="oin-ub-31X" id="gCb-R7-kaV"/>
@@ -72,7 +84,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="248" y="-76"/>
+            <point key="canvasLocation" x="248" y="-131"/>
         </scene>
         <!--fight/action-->
         <scene sceneID="ypn-eY-08A">
