@@ -1,39 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15702" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oin-ub-31X">
+    <device id="watch38"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
-        <!--main-->
-        <scene sceneID="aou-V4-d1y">
-            <objects>
-                <controller identifier="main" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchOs" customModuleProvider="target">
-                    <items>
-                        <button width="1" alignment="left" title="Move" id="zX7-Kn-WB2">
-                            <connections>
-                                <action selector="onTouchMove" destination="AgC-eL-Hgc" id="qV2-Sp-qyW"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Fight/Action" id="s3k-lY-uDd">
-                            <connections>
-                                <action selector="onTouchFightAction" destination="AgC-eL-Hgc" id="1pW-Ut-N1J"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Inventory" id="RP6-TQ-Jxa">
-                            <connections>
-                                <action selector="onTouchInventory" destination="AgC-eL-Hgc" id="z8g-Mn-H15"/>
-                            </connections>
-                        </button>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="-78" y="248"/>
-        </scene>
         <!--move-->
         <scene sceneID="LW7-dd-3LU">
             <objects>
@@ -44,6 +17,9 @@
                                 <label alignment="left" text="Label" id="rzz-8R-wME"/>
                                 <button width="30" height="30" alignment="right" backgroundImage="icon-chest" id="z2F-Ah-6ym">
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <action selector="openInventory" destination="oin-ub-31X" id="6xy-mr-Put"/>
+                                    </connections>
                                 </button>
                             </items>
                         </group>
@@ -64,17 +40,16 @@
                                         <action selector="onTouchRight" destination="oin-ub-31X" id="pk3-oK-xX1"/>
                                     </connections>
                                 </button>
-                                <button alignment="center" title="Action" id="Edy-XT-d1q"/>
+                                <button alignment="center" title="Action" id="Edy-XT-d1q">
+                                    <connections>
+                                        <action selector="onTouchAction" destination="oin-ub-31X" id="qBF-za-oiK"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <button width="1" alignment="left" title="down" id="nPH-2z-7DI">
                             <connections>
                                 <action selector="onTouchDown" destination="oin-ub-31X" id="gCb-R7-kaV"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="BACK" id="Zlx-6k-A2D">
-                            <connections>
-                                <action selector="backButton" destination="oin-ub-31X" id="ntl-IG-dvf"/>
                             </connections>
                         </button>
                     </items>
@@ -85,35 +60,6 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="248" y="-131"/>
-        </scene>
-        <!--fight/action-->
-        <scene sceneID="ypn-eY-08A">
-            <objects>
-                <controller identifier="fight/action" id="dgF-W4-qaq" customClass="FightActionInterfaceContoller" customModule="watchOs_Extension">
-                    <items>
-                        <label width="136" alignment="left" id="f36-Sv-Y6J"/>
-                        <button width="1" alignment="left" title="Fight" id="IQ3-zT-Ooe">
-                            <connections>
-                                <action selector="onTouchFight" destination="dgF-W4-qaq" id="dIu-Ly-x5E"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="Action" id="YOk-PD-AJp">
-                            <connections>
-                                <action selector="onTouchAction" destination="dgF-W4-qaq" id="AGN-Rd-mUz"/>
-                            </connections>
-                        </button>
-                        <button width="1" alignment="left" title="BACK" id="dsf-1l-GBM">
-                            <connections>
-                                <action selector="backButton" destination="dgF-W4-qaq" id="Eqx-5x-Khe"/>
-                            </connections>
-                        </button>
-                    </items>
-                    <connections>
-                        <outlet property="label" destination="f36-Sv-Y6J" id="L8T-Lb-ejZ"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="248" y="248"/>
         </scene>
         <!--inventory-->
         <scene sceneID="pXn-kQ-qZt">
@@ -142,7 +88,10 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="248" y="560"/>
+            <point key="canvasLocation" x="473" y="-133"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-chest" width="225" height="225"/>
+    </resources>
 </document>

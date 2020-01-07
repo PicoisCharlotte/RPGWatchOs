@@ -17,6 +17,8 @@ class FirstSceneViewController: UIViewController {
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
     var heroDeclaration: Hero = Hero(hp: 30, damage: 5)
 
+    var monsters: [Monster] = []
+
     @IBOutlet var label: UILabel!
     
     private var totalMonsterOnMap = 0
@@ -43,12 +45,12 @@ class FirstSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+        self.monsters.append(babyMonsterDeclaration)
+        self.monsters.append(juniorMonsterDeclaration)
         if isSuported() {
             session.delegate = self
             session.activate()
         }
-         var monsters: [Monster] = [self.babyMonsterDeclaration, self.juniorMonsterDeclaration]
         totalMonsterOnMap = monsters.count
         
         hero.image = heroDeclaration.imageHero
@@ -145,11 +147,26 @@ extension FirstSceneViewController: WCSessionDelegate {
                 let disposition = self.imageView.frame.maxY - 123
                 self.label.text = "action pressed"
                 
+                print(" dispo " , self.imageView.frame.maxY)
+                print(self.babyMonster.frame.maxY)
+                print(self.babyMonster.frame.minY)
                 if self.totalMonsterOnMap == 0  && disposition == self.chest.frame.maxY {
                     replyHandler(["item" : "yellow key dropped"])
-                }                
+                } else if (self.imageView.frame.maxY >= self.babyMonster.frame.minY && self.imageView.frame.maxY <= self.babyMonster.frame.maxY){
+                    print("babymonster")
+                    self.babyMonsterDeclaration.takeDamage(damage: self.heroDeclaration.attack())
+                } else if (disposition == self.juniorMonster.frame.maxY){
+                    print("juniormonster")
+                }
+                if(self.babyMonsterDeclaration.hpMonster <= 0){
+                    if let index = self.monsters.firstIndex(where: {
+                        $0.imageMonster == self.babyMonsterDeclaration.imageMonster
+                    }){
+                        self.monsters.remove(at: index)
+                    }
+                }
+                print("count ::: " , self.monsters.count)
             }
         }
     }
-    
 }

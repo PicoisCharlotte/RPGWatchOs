@@ -13,6 +13,8 @@ import WatchKit
 class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     private var session = WCSession.default
 
+    private var inventoryInterfaceController = InventoryInterfaceController()
+    
     @IBOutlet var label: WKInterfaceLabel!
     @IBOutlet var sendButton: WKInterfaceButton!
     
@@ -20,9 +22,22 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
         return session.isReachable
     }
     
-    @IBAction func backButton() {
-        if session.isReachable {
-            self.pushController(withName: "main", context: "Pad")
+    @IBAction func openInventory() {
+        self.pushController(withName: "inventory", context: "Pad")
+    }
+    @IBAction func onTouchAction() {
+        if isReachable() {
+            print("IPhone is reachable")
+        
+            session.sendMessage(["request" : "action"], replyHandler: {reply in
+                self.label.setText(reply["item"] as? String)
+            }, errorHandler: {error in
+                // catch any errors here
+                print("ERROR : ", error)
+            })
+            
+        } else {
+            print("IPhone is not reachable")
         }
     }
     

@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class Monster {
+class Monster : Fight {
+    
     var hpMonster: Int
     var damageMonster: Int = 5
     var imageMonster: UIImage
@@ -18,6 +19,16 @@ class Monster {
         self.hpMonster = hp
         self.damageMonster = damage
         self.imageMonster = image
+    }
+    
+    func attack() -> Int{
+        let lower = self.damageMonster - 2
+        let upper = self.damageMonster + 2
+        return Int(arc4random_uniform(UInt32(upper - lower))) + lower
+    }
+    
+    func takeDamage(damage: Int){
+        self.hpMonster -= damage
     }
     
     enum TypeMonster {
