@@ -27,13 +27,21 @@ class Monster : Fight {
         return Int(arc4random_uniform(UInt32(upper - lower))) + lower
     }
     
+    func hadPotion() -> Bool {
+        let potion = Bool.random()
+        if potion {
+            return true
+        }
+        return false
+    }
+    
     func takeDamage(damage: Int){
         self.hpMonster -= damage
     }
     
-    enum TypeMonster {
-        case babyMonster
-        case juniorMonster
+    enum TypeMonster: String {
+        case babyMonster = "babyMonster"
+        case juniorMonster = "juniorMonster"
         case seniorMonster
         case bossMonster
         

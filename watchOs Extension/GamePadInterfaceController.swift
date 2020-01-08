@@ -108,4 +108,12 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("back is pressed")
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+                
+        let msg: String = message["msg"]! as! String
+        if msg == "GameOver" {
+            pushController(withName: "gameOver", context: "Pad")
+        }
+    }
 }

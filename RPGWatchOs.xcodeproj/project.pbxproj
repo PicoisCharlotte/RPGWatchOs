@@ -25,6 +25,8 @@
 		1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C136B23BD0708009F0C28 /* RedrawImageView.swift */; };
 		1D0CCBFF23C2042200726119 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFE23C2042200726119 /* Inventory.swift */; };
 		1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */; };
+		1DB1AFAF23C67145004E61AD /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB1AFAD23C67145004E61AD /* GameOverViewController.swift */; };
+		1DB1AFB023C67145004E61AD /* GameOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1AFAE23C67145004E61AD /* GameOverViewController.xib */; };
 		1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		1D0C136B23BD0708009F0C28 /* RedrawImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawImageView.swift; sourceTree = "<group>"; };
 		1D0CCBFE23C2042200726119 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableRowController.swift; sourceTree = "<group>"; };
+		1DB1AFAD23C67145004E61AD /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		1DB1AFAE23C67145004E61AD /* GameOverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameOverViewController.xib; sourceTree = "<group>"; };
 		1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +191,8 @@
 				1D0C136523BCFC08009F0C28 /* FirstSceneViewController.swift */,
 				1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */,
 				02BCF45F23C4C0540044A351 /* FightManager.swift */,
+				1DB1AFAD23C67145004E61AD /* GameOverViewController.swift */,
+				1DB1AFAE23C67145004E61AD /* GameOverViewController.xib */,
 			);
 			path = FirstScene;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DB1AFB023C67145004E61AD /* GameOverViewController.xib in Resources */,
 				1D0C136823BCFC08009F0C28 /* FirstSceneViewController.xib in Resources */,
 				1D0C133823BCFBB2009F0C28 /* LaunchScreen.storyboard in Resources */,
 				1D0C133523BCFBB2009F0C28 /* Assets.xcassets in Resources */,
@@ -327,6 +334,7 @@
 				1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */,
 				1D09042F23C37CD9005F7CB8 /* Monster.swift in Sources */,
 				1D0C136723BCFC08009F0C28 /* FirstSceneViewController.swift in Sources */,
+				1DB1AFAF23C67145004E61AD /* GameOverViewController.swift in Sources */,
 				1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */,
 				1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */,
 			);

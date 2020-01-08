@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15702" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oin-ub-31X">
-    <device id="watch38"/>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oin-ub-31X">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
         <!--move-->
@@ -90,8 +92,15 @@
             </objects>
             <point key="canvasLocation" x="473" y="-133"/>
         </scene>
+        <!--gameOver-->
+        <scene sceneID="xfg-pF-uTm">
+            <objects>
+                <controller identifier="gameOver" id="sWx-vv-6fT">
+                    <items>
+                        <imageView alignment="center" verticalAlignment="center" image="died" id="bF6-J5-4hQ"/>
+                    </items>
+                </controller>
+            </objects>
+        </scene>
     </scenes>
-    <resources>
-        <image name="icon-chest" width="225" height="225"/>
-    </resources>
 </document>
