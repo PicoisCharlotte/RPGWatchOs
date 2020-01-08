@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +16,8 @@
                 <outlet property="chest" destination="Yvc-kK-WBh" id="KHb-9V-63E"/>
                 <outlet property="gameArea" destination="zK0-RS-zfk" id="k5Q-cd-ZaQ"/>
                 <outlet property="hero" destination="OIh-ah-2bH" id="QfZ-9B-Fyq"/>
+                <outlet property="hpHeroLabel" destination="sK2-QK-Gl2" id="2Ug-7a-O5N"/>
+                <outlet property="hpMonsterLabel" destination="DnV-Y0-tc2" id="P0C-Fq-y83"/>
                 <outlet property="imageView" destination="OIh-ah-2bH" id="fSM-3m-N9J"/>
                 <outlet property="juniorMonster" destination="94b-AL-fgK" id="quv-a5-xFE"/>
                 <outlet property="label" destination="ymT-vS-rQs" id="XPK-Vp-MEl"/>
@@ -26,8 +30,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnV-Y0-tc2">
+                    <rect key="frame" x="323" y="25" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.84207011010362698" green="0.17660564829400471" blue="0.26050933026814682" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sK2-QK-Gl2">
+                    <rect key="frame" x="323" y="40" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.20036641592937265" green="1" blue="0.12927700598817105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK0-RS-zfk">
-                    <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                    <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZL-j1-cxa">
                             <rect key="frame" x="8" y="112" width="55" height="60"/>
@@ -64,8 +80,12 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="70" id="5s9-7T-Peo"/>
+                <constraint firstItem="DnV-Y0-tc2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="7uL-bX-xvS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DnV-Y0-tc2" secondAttribute="trailing" constant="10" id="AFu-EI-2kB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sK2-QK-Gl2" secondAttribute="trailing" constant="10" id="D1l-hi-k1o"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jij-7w-ND3"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ule-bo-jk2"/>
+                <constraint firstItem="sK2-QK-Gl2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ZzN-VL-kxz"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="tAK-lu-CF4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

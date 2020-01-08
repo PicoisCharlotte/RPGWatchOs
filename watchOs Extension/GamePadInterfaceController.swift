@@ -29,8 +29,12 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
         if isReachable() {
             print("IPhone is reachable")
         
+        
             session.sendMessage(["request" : "action"], replyHandler: {reply in
-                self.label.setText(reply["item"] as? String)
+                let item = reply["item"] as? String
+                self.inventoryInterfaceController.addRowInInventory(item: item!)
+                self.label.setText(item! + " dropped")
+                
             }, errorHandler: {error in
                 // catch any errors here
                 print("ERROR : ", error)

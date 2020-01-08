@@ -17,11 +17,14 @@ class FirstSceneViewController: UIViewController {
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
     var heroDeclaration: Hero = Hero(hp: 30, damage: 5)
 
+    var heroMaxHp: String = ""
+    var babymonsterMaxHp: String = ""
+    var juniormonsterMaxHp: String = ""
+    
     var monsters: [Monster] = []
 
     @IBOutlet var label: UILabel!
     
-    private var totalMonsterOnMap = 0
     private var allMonstersBeaten: Bool = false
     
     private var session = WCSession.default
@@ -35,6 +38,12 @@ class FirstSceneViewController: UIViewController {
     @IBOutlet var juniorMonster: UIImageView!
     @IBOutlet var hero: UIImageView!
     
+    private var isChestOpen: Bool = false
+    private var timer: Timer?
+    
+    @IBOutlet var hpHeroLabel: UILabel!
+    @IBOutlet var hpMonsterLabel: UILabel!
+    
     func isSuported() -> Bool {
         return WCSession.isSupported()
     }
@@ -44,6 +53,9 @@ class FirstSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.heroMaxHp = String(self.heroDeclaration.hpHero)
+        self.babymonsterMaxHp = String(self.babyMonsterDeclaration.hpMonster)
+        self.juniormonsterMaxHp = String(self.juniorMonsterDeclaration.hpMonster)
 
         self.monsters.append(babyMonsterDeclaration)
         self.monsters.append(juniorMonsterDeclaration)
@@ -51,13 +63,14 @@ class FirstSceneViewController: UIViewController {
             session.delegate = self
             session.activate()
         }
-        totalMonsterOnMap = monsters.count
         
         hero.image = heroDeclaration.imageHero
         babyMonster.image = babyMonsterDeclaration.imageMonster
         juniorMonster.image = juniorMonsterDeclaration.imageMonster
         lock.image = UIImage(named: "yellowlocklocked")
         
+        self.hpHeroLabel.text = heroMaxHp + " / " + heroMaxHp
+        self.hpMonsterLabel.text = "-- / --"
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
     }
 
@@ -78,14 +91,6 @@ extension FirstSceneViewController: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
-        DispatchQueue.main.async {
-            if self.totalMonsterOnMap == 0 {
-                self.chest.image = UIImage(named: "chest")
-                print(self.totalMonsterOnMap)
-            }
-            print(self.totalMonsterOnMap)
-        }
         
         
         if message["request"] as? String == "up" {
@@ -144,29 +149,85 @@ extension FirstSceneViewController: WCSessionDelegate {
         
         if message["request"] as? String == "action" {
             DispatchQueue.main.async {
-                let disposition = self.imageView.frame.maxY - 123
                 self.label.text = "action pressed"
+                var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
-                print(" dispo " , self.imageView.frame.maxY)
-                print(self.babyMonster.frame.maxY)
-                print(self.babyMonster.frame.minY)
-                if self.totalMonsterOnMap == 0  && disposition == self.chest.frame.maxY {
-                    replyHandler(["item" : "yellow key dropped"])
-                } else if (self.imageView.frame.maxY >= self.babyMonster.frame.minY && self.imageView.frame.maxY <= self.babyMonster.frame.maxY){
+                if self.monsters.count == 0
+                    && checkIfIsOnImage(image: self.chest)
+                    && !self.isChestOpen {
+                    replyHandler(["item" : "yellow key"])
+                    self.chest.image = UIImage(named: "openchest")
+                    
+                    self.isChestOpen = true
+                    
+                } else if (checkIfIsOnImage(image: self.babyMonster)){
                     print("babymonster")
-                    self.babyMonsterDeclaration.takeDamage(damage: self.heroDeclaration.attack())
-                } else if (disposition == self.juniorMonster.frame.maxY){
-                    print("juniormonster")
+                    
+                    self.babyMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
+                    self.hpMonsterLabel.text = String(self.babyMonsterDeclaration.hpMonster) + " / " + self.babymonsterMaxHp
+                    
+                    defeatMonster(monster: self.babyMonsterDeclaration, image: self.babyMonster)
+
+                    guard self.timer == nil else { return }
+                        self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
+                            timer in self.heroDeclaration.takeDamage(damage: self.babyMonsterDeclaration.attack())
+                            
+                            stopTimer(monster: self.babyMonsterDeclaration)
+                            
+                        }
+           
+                } else if (checkIfIsOnImage(image: self.juniorMonster)){
+ 
+                    self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
+                    defeatMonster(monster: self.juniorMonsterDeclaration, image: self.juniorMonster)
+                    
+                    print("hero hp : \(self.heroDeclaration.hpHero)")
+                    
+                        guard self.timer == nil else { return }
+                        self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
+                            timer in self.heroDeclaration.takeDamage(damage: self.juniorMonsterDeclaration.attack())
+                            
+                            
+                            stopTimer(monster: self.juniorMonsterDeclaration)
+                            
+                        }
                 }
-                if(self.babyMonsterDeclaration.hpMonster <= 0){
-                    if let index = self.monsters.firstIndex(where: {
-                        $0.imageMonster == self.babyMonsterDeclaration.imageMonster
-                    }){
-                        self.monsters.remove(at: index)
-                    }
-                }
-                print("count ::: " , self.monsters.count)
             }
+        }
+        
+        func stopTimer(monster: Monster) {
+            if self.heroDeclaration.hpHero <= 0 || monster.hpMonster <= 0 {
+                print("hpHero \(self.heroDeclaration.hpHero)")
+                print("hpMonster \(monster.hpMonster)")
+
+                self.timer?.invalidate()
+                self.timer = nil
+            }
+        }
+        
+        func defeatMonster(monster: Monster, image: UIImageView) {
+            if(monster.hpMonster <= 0){
+                if let index = self.monsters.firstIndex(where: {
+                    $0.imageMonster == monster.imageMonster
+                }){
+                    
+                    self.monsters.remove(at: index)
+                    self.hpMonsterLabel.text = "-- / --"
+                    image.isHidden = true
+                }
+              
+            }
+            if self.monsters.count == 0 {
+                self.chest.image = UIImage(named: "lockchest")
+            }
+        }
+        
+        func checkIfIsOnImage(image: UIImageView) -> Bool {
+            if self.imageView.frame.maxY >= image.frame.minY
+                && self.imageView.frame.maxY <= image.frame.maxY {
+                return true
+            }
+            return false
         }
     }
 }
