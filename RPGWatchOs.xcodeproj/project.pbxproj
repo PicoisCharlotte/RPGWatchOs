@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		02BCF46023C4C0540044A351 /* FightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF45F23C4C0540044A351 /* FightManager.swift */; };
+		02BCF46223C75E340044A351 /* LockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF46123C75E340044A351 /* LockController.swift */; };
+		02BCF46523C7768B0044A351 /* ConfigHomeKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF46323C7768B0044A351 /* ConfigHomeKitViewController.swift */; };
+		02BCF46623C7768B0044A351 /* ConfigHomeKitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BCF46423C7768B0044A351 /* ConfigHomeKitViewController.xib */; };
+		02BCF46923C780F80044A351 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF46723C780F80044A351 /* HomeViewController.swift */; };
+		02BCF46A23C780F80044A351 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BCF46823C780F80044A351 /* HomeViewController.xib */; };
+		02BCF46C23C781330044A351 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF46B23C781330044A351 /* Constants.swift */; };
+		02BCF46F23C782AC0044A351 /* SharedHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF46E23C782AC0044A351 /* SharedHomeManager.swift */; };
+		02BCF47323C783990044A351 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BCF47223C783990044A351 /* HomeKit.framework */; };
+		02BCF47623C78A220044A351 /* LocksSearchViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF47423C78A220044A351 /* LocksSearchViewControllerViewController.swift */; };
+		02BCF47723C78A220044A351 /* LocksSearchViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BCF47523C78A220044A351 /* LocksSearchViewControllerViewController.xib */; };
+		02BCF47923C78DF70044A351 /* ListLocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF47823C78DF70044A351 /* ListLocksManager.swift */; };
 		1D09042F23C37CD9005F7CB8 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09042723C36DC5005F7CB8 /* Monster.swift */; };
 		1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09042A23C36FD8005F7CB8 /* Hero.swift */; };
 		1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */; };
@@ -74,6 +85,18 @@
 
 /* Begin PBXFileReference section */
 		02BCF45F23C4C0540044A351 /* FightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightManager.swift; sourceTree = "<group>"; };
+		02BCF46123C75E340044A351 /* LockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockController.swift; sourceTree = "<group>"; };
+		02BCF46323C7768B0044A351 /* ConfigHomeKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigHomeKitViewController.swift; sourceTree = "<group>"; };
+		02BCF46423C7768B0044A351 /* ConfigHomeKitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigHomeKitViewController.xib; sourceTree = "<group>"; };
+		02BCF46723C780F80044A351 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		02BCF46823C780F80044A351 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		02BCF46B23C781330044A351 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		02BCF46E23C782AC0044A351 /* SharedHomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHomeManager.swift; sourceTree = "<group>"; };
+		02BCF47023C783990044A351 /* RPGWatchOs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RPGWatchOs.entitlements; sourceTree = "<group>"; };
+		02BCF47223C783990044A351 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		02BCF47423C78A220044A351 /* LocksSearchViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocksSearchViewControllerViewController.swift; sourceTree = "<group>"; };
+		02BCF47523C78A220044A351 /* LocksSearchViewControllerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocksSearchViewControllerViewController.xib; sourceTree = "<group>"; };
+		02BCF47823C78DF70044A351 /* ListLocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLocksManager.swift; sourceTree = "<group>"; };
 		1D09042723C36DC5005F7CB8 /* Monster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
 		1D09042A23C36FD8005F7CB8 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		1D0C132A23BCFBB0009F0C28 /* RPGWatchOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGWatchOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02BCF47323C783990044A351 /* HomeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +142,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02BCF46D23C7829D0044A351 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				02BCF46B23C781330044A351 /* Constants.swift */,
+				02BCF46E23C782AC0044A351 /* SharedHomeManager.swift */,
+				02BCF47823C78DF70044A351 /* ListLocksManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		02BCF47123C783990044A351 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02BCF47223C783990044A351 /* HomeKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		02BCF47A23C8A4710044A351 /* HomeKit */ = {
+			isa = PBXGroup;
+			children = (
+				02BCF46323C7768B0044A351 /* ConfigHomeKitViewController.swift */,
+				02BCF46423C7768B0044A351 /* ConfigHomeKitViewController.xib */,
+				02BCF46723C780F80044A351 /* HomeViewController.swift */,
+				02BCF46823C780F80044A351 /* HomeViewController.xib */,
+				02BCF47423C78A220044A351 /* LocksSearchViewControllerViewController.swift */,
+				02BCF47523C78A220044A351 /* LocksSearchViewControllerViewController.xib */,
+			);
+			path = HomeKit;
+			sourceTree = "<group>";
+		};
+		02BCF47B23C8A4A40044A351 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1D09042723C36DC5005F7CB8 /* Monster.swift */,
+				1D09042A23C36FD8005F7CB8 /* Hero.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		02BCF47C23C8A72B0044A351 /* FirstScene */ = {
+			isa = PBXGroup;
+			children = (
+				1D0C136523BCFC08009F0C28 /* FirstSceneViewController.swift */,
+				1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */,
+				02BCF45F23C4C0540044A351 /* FightManager.swift */,
+				1DB1AFAD23C67145004E61AD /* GameOverViewController.swift */,
+				1DB1AFAE23C67145004E61AD /* GameOverViewController.xib */,
+				02BCF46123C75E340044A351 /* LockController.swift */,
+			);
+			path = FirstScene;
+			sourceTree = "<group>";
+		};
 		1D09042923C36DC9005F7CB8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +210,7 @@
 				1D0C134223BCFBD6009F0C28 /* watchOs */,
 				1D0C135123BCFBD6009F0C28 /* watchOs Extension */,
 				1D0C132B23BCFBB0009F0C28 /* Products */,
+				02BCF47123C783990044A351 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,7 +227,11 @@
 		1D0C132C23BCFBB0009F0C28 /* RPGWatchOs */ = {
 			isa = PBXGroup;
 			children = (
-				1D0C136423BCFBE6009F0C28 /* FirstScene */,
+				02BCF47C23C8A72B0044A351 /* FirstScene */,
+				02BCF47B23C8A4A40044A351 /* Models */,
+				02BCF47A23C8A4710044A351 /* HomeKit */,
+				02BCF47023C783990044A351 /* RPGWatchOs.entitlements */,
+				02BCF46D23C7829D0044A351 /* Managers */,
 				1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */,
 				1D0C133423BCFBB2009F0C28 /* Assets.xcassets */,
 				1D0C133623BCFBB2009F0C28 /* LaunchScreen.storyboard */,
@@ -181,20 +263,6 @@
 				1D0C135823BCFBD7009F0C28 /* Info.plist */,
 			);
 			path = "watchOs Extension";
-			sourceTree = "<group>";
-		};
-		1D0C136423BCFBE6009F0C28 /* FirstScene */ = {
-			isa = PBXGroup;
-			children = (
-				1D09042A23C36FD8005F7CB8 /* Hero.swift */,
-				1D09042723C36DC5005F7CB8 /* Monster.swift */,
-				1D0C136523BCFC08009F0C28 /* FirstSceneViewController.swift */,
-				1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */,
-				02BCF45F23C4C0540044A351 /* FightManager.swift */,
-				1DB1AFAD23C67145004E61AD /* GameOverViewController.swift */,
-				1DB1AFAE23C67145004E61AD /* GameOverViewController.xib */,
-			);
-			path = FirstScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,10 +367,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02BCF46623C7768B0044A351 /* ConfigHomeKitViewController.xib in Resources */,
 				1DB1AFB023C67145004E61AD /* GameOverViewController.xib in Resources */,
 				1D0C136823BCFC08009F0C28 /* FirstSceneViewController.xib in Resources */,
 				1D0C133823BCFBB2009F0C28 /* LaunchScreen.storyboard in Resources */,
 				1D0C133523BCFBB2009F0C28 /* Assets.xcassets in Resources */,
+				02BCF47723C78A220044A351 /* LocksSearchViewControllerViewController.xib in Resources */,
+				02BCF46A23C780F80044A351 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,9 +402,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				02BCF46023C4C0540044A351 /* FightManager.swift in Sources */,
+				02BCF46C23C781330044A351 /* Constants.swift in Sources */,
+				02BCF47923C78DF70044A351 /* ListLocksManager.swift in Sources */,
 				1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */,
+				02BCF47623C78A220044A351 /* LocksSearchViewControllerViewController.swift in Sources */,
 				1D09042F23C37CD9005F7CB8 /* Monster.swift in Sources */,
 				1D0C136723BCFC08009F0C28 /* FirstSceneViewController.swift in Sources */,
+				02BCF46F23C782AC0044A351 /* SharedHomeManager.swift in Sources */,
+				02BCF46523C7768B0044A351 /* ConfigHomeKitViewController.swift in Sources */,
+				02BCF46923C780F80044A351 /* HomeViewController.swift in Sources */,
+				02BCF46223C75E340044A351 /* LockController.swift in Sources */,
 				1DB1AFAF23C67145004E61AD /* GameOverViewController.swift in Sources */,
 				1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */,
 				1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */,
@@ -507,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RPGWatchOs/RPGWatchOs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RPGWatchOs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -524,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RPGWatchOs/RPGWatchOs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RPGWatchOs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

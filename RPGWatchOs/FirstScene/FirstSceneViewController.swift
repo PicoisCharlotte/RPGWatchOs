@@ -8,6 +8,7 @@
 
 import UIKit
 import WatchConnectivity
+import HomeKit
 
 class FirstSceneViewController: UIViewController {
     let screensize: CGRect = UIScreen.main.bounds
@@ -25,6 +26,8 @@ class FirstSceneViewController: UIViewController {
     var juniormonsterMaxHp: String = ""
     
     var monsters: [Monster] = []
+    
+    var listLockManager = ListLocksManager.default
 
     @IBOutlet var label: UILabel!
     
@@ -47,6 +50,9 @@ class FirstSceneViewController: UIViewController {
     @IBOutlet var hpHeroLabel: UILabel!
     @IBOutlet var hpMonsterLabel: UILabel!
     
+    private let homeManager = HMHomeManager()
+    private var selectedHome : HMHome!
+    
     func isSuported() -> Bool {
         return WCSession.isSupported()
     }
@@ -55,6 +61,7 @@ class FirstSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getHome()
         self.heroMaxHp = String(self.heroDeclaration.hpHero)
         self.babymonsterMaxHp = String(self.babyMonsterDeclaration.hpMonster)
         self.juniormonsterMaxHp = String(self.juniorMonsterDeclaration.hpMonster)
@@ -76,6 +83,28 @@ class FirstSceneViewController: UIViewController {
         self.hpMonsterLabel.text = CONST_MONSTER_HP
         
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
+    }
+    
+    func getHome(){
+        print(homeManager.homes)
+        for home in homeManager.homes{
+            if home.name.contains("LOCKS"){
+                self.selectedHome = home
+                return
+            }
+        }
+        createEscapeHome()
+    }
+        
+    private func createEscapeHome(){
+        self.homeManager.addHome(withName: "\("LOCKS") Home", completionHandler: { (home, err) in
+            self.selectedHome = home
+        })
+    }
+    
+    @IBAction func addAccessory(_ sender: Any) {
+        
+        self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
 
 }
@@ -135,6 +164,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                 } else {
                     print("Image goes out of screen on the right")
                 }
+                changeStatusLock()
             }
         }
         
@@ -142,6 +172,7 @@ extension FirstSceneViewController: WCSessionDelegate {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
             DispatchQueue.main.async {
+
                 self.label.text = "down pressed"
              
                 if self.imageView.frame.maxY + self.imageView.frame.height < self.gameArea.frame.height {
@@ -209,6 +240,20 @@ extension FirstSceneViewController: WCSessionDelegate {
             }
         }
         
+        func changeStatusLock(){
+
+            for accessory in self.listLockManager.listLocks ?? []{
+                guard let characteristic = accessory.findCharacteristic(type: HMCharacteristicTypeTargetLockMechanismState),
+                    let value = characteristic.value as? Int,
+                    let state = HMCharacteristicValueLockMechanismState(rawValue: value) else { continue }
+                if state == .secured {
+                    characteristic.writeValue(0) { (_) in }
+                } else if state == .unsecured {
+                    characteristic.writeValue(1) { (_) in }
+                }
+            }
+        }
+        
         func stopTimer(monster: Monster) {
             if self.heroDeclaration.hpHero <= 0 || monster.hpMonster <= 0 {
                 
@@ -223,6 +268,14 @@ extension FirstSceneViewController: WCSessionDelegate {
                 self.timer?.invalidate()
                 self.timer = nil
             }
+        }
+        
+        func getStateLock() -> HMCharacteristic?{
+            print("listHM \(self.listLockManager.listLocks.count)")
+            if let lock = self.listLockManager.listLocks.first?.services.first(where: { $0.serviceType == HMServiceTypeLockMechanism}) {
+                return lock.characteristics.first { $0.characteristicType == HMCharacteristicTypeCurrentLockMechanismState }
+            }
+            return nil
         }
         
         func defeatMonster(monster: Monster, image: UIImageView, monsterName: String) {
@@ -259,5 +312,21 @@ extension FirstSceneViewController: WCSessionDelegate {
             }
             return false
         }
+    }
+}
+
+
+extension HMAccessory {
+    
+    func findCharacteristic(type: String) -> HMCharacteristic? {
+        for service in self.services{
+            for characteristic in service.characteristics{
+                if characteristic.characteristicType == type {
+                    return characteristic
+                }
+            }
+        }
+        
+        return nil
     }
 }
