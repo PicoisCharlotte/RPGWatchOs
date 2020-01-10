@@ -29,7 +29,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
         if isReachable() {
             print("IPhone is reachable")
         
-        
             session.sendMessage(["request" : "action"], replyHandler: {reply in
                 let item = reply["item"] as? String
                 self.inventoryInterfaceController.addRowInInventory(item: item!)
@@ -47,9 +46,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-        print("awake")
-
     }
     
     func manageDirection(direction: String) {
@@ -65,8 +61,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
             print("IPhone is not reachable")
         }
     }
-    
-    
     
     @IBAction func onTouchUp() {
         manageDirection(direction: "up")
@@ -106,7 +100,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("back is pressed")
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {

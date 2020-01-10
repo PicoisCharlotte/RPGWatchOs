@@ -11,6 +11,7 @@ import WatchConnectivity
 
 class FirstSceneViewController: UIViewController {
     let screensize: CGRect = UIScreen.main.bounds
+    @IBOutlet var gameOverImageView: UIImageView!
     
     let CONST_MONSTER_HP: String = "-- / --"
     let CONST_LABEL_HERO: String = "Hero HP : "
@@ -18,11 +19,13 @@ class FirstSceneViewController: UIViewController {
     
     var babyMonsterDeclaration: Monster = Monster.TypeMonster.babyMonster.instance
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
-    var heroDeclaration: Hero = Hero(hp: 30, damage: 5)
+    var heroDeclaration: Hero = Hero(hp: 300, damage: 5)
 
     var heroMaxHp: String = ""
     var babymonsterMaxHp: String = ""
     var juniormonsterMaxHp: String = ""
+    
+    private var potion: Bool = false
     
     var monsters: [Monster] = []
 
@@ -165,46 +168,55 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                     self.isChestOpen = true
                     
-                } else if (checkIfIsOnImage(image: self.babyMonster))
-                    && self.babyMonsterDeclaration.hpMonster > 0 {
+                } else if (checkIfIsOnImage(image: self.babyMonster)) {
+                        if self.babyMonsterDeclaration.hpMonster > 0 {
 
-                    let monsterName: String = (Monster.TypeMonster.babyMonster).rawValue + " : "
-                    self.babyMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
-                    self.hpMonsterLabel.text = monsterName + String(self.babyMonsterDeclaration.hpMonster) + " / " + self.babymonsterMaxHp
-                    self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
-                    
-                    defeatMonster(monster: self.babyMonsterDeclaration, image: self.babyMonster, monsterName: monsterName)
-                    
-                    
+                        let monsterName: String = (Monster.TypeMonster.babyMonster).rawValue + " : "
+                        self.babyMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
+                        self.hpMonsterLabel.text = monsterName + String(self.babyMonsterDeclaration.hpMonster) + " / " + self.babymonsterMaxHp
+                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                        
+                        defeatMonster(monster: self.babyMonsterDeclaration, image: self.babyMonster, monsterName: monsterName)
 
-                    guard self.timer == nil else { return }
-                    self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
-                        timer in self.heroDeclaration.takeDamage(damage: self.babyMonsterDeclaration.attack())
-                        
-                        stopTimer(monster: self.babyMonsterDeclaration)
-                        
+                        guard self.timer == nil else { return }
+                        self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
+                            timer in self.heroDeclaration.takeDamage(damage: self.babyMonsterDeclaration.attack())
+                            
+                            stopTimer(monster: self.babyMonsterDeclaration)
+                            
+                        }
                     }
                     
-                } else if (checkIfIsOnImage(image: self.juniorMonster))
-                  && self.juniorMonsterDeclaration.hpMonster > 0 {
-                    
-                    let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
-                    
-                    self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
-                    
-                    self.hpMonsterLabel.text = monsterName + String(self.juniorMonsterDeclaration.hpMonster) + " / " + self.juniormonsterMaxHp
-                    self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
-                    
-                    defeatMonster(monster: self.juniorMonsterDeclaration, image: self.juniorMonster, monsterName: monsterName)
-                    
-                    guard self.timer == nil else { return }
-                    self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
-                        timer in self.heroDeclaration.takeDamage(damage: self.juniorMonsterDeclaration.attack())
-                        
-                        
-                        stopTimer(monster: self.juniorMonsterDeclaration)
-                        
+                    if self.potion {
+                        replyHandler(["item" : "potion"])
+                        self.potion = false
                     }
+                    
+                } else if (checkIfIsOnImage(image: self.juniorMonster)) {
+                    if self.juniorMonsterDeclaration.hpMonster > 0 {
+                    
+                        let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
+                        
+                        self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
+                        
+                        self.hpMonsterLabel.text = monsterName + String(self.juniorMonsterDeclaration.hpMonster) + " / " + self.juniormonsterMaxHp
+                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                        
+                        defeatMonster(monster: self.juniorMonsterDeclaration, image: self.juniorMonster, monsterName: monsterName)
+                        
+                        guard self.timer == nil else { return }
+                        self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
+                            timer in self.heroDeclaration.takeDamage(damage: self.juniorMonsterDeclaration.attack())
+                            
+                            
+                            stopTimer(monster: self.juniorMonsterDeclaration)
+                            
+                        }
+                    }
+                }
+                if self.potion {
+                    replyHandler(["item" : "potion"])
+                    self.potion = false
                 }
             }
         }
@@ -214,7 +226,10 @@ extension FirstSceneViewController: WCSessionDelegate {
                 
                 if self.heroDeclaration.hpHero <= 0 {
                     DispatchQueue.main.async {
-                        self.navigationController?.pushViewController(GameOverViewController(), animated: true)
+                        self.imageView.isHidden = true
+                        self.label.isHidden = true
+                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + " 0 / " + self.heroMaxHp
+                        self.gameOverImageView.image = UIImage(named: "died")
                         session.sendMessage(["msg" : "GameOver"], replyHandler: nil) { (error) in
                             print("Error sending message: \(error)")
                         }
@@ -234,15 +249,14 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                     self.monsters.remove(at: index)
                     self.hpMonsterLabel.text = monsterName + " has been defeated"
-                   // image.isHidden = true
                 }
               
             }
             
             if monster.hpMonster <= 0 {
                 if(monster.hadPotion()) {
-                    print(monster.hadPotion())
                     image.image = UIImage(named: "potion")
+                    self.potion = true
                 } else {
                     image.isHidden = true
                 }

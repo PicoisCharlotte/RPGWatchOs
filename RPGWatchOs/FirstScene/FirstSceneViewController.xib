@@ -15,6 +15,7 @@
                 <outlet property="babyMonster" destination="8ZL-j1-cxa" id="TI7-wD-KHa"/>
                 <outlet property="chest" destination="Yvc-kK-WBh" id="KHb-9V-63E"/>
                 <outlet property="gameArea" destination="zK0-RS-zfk" id="k5Q-cd-ZaQ"/>
+                <outlet property="gameOverImageView" destination="etK-lj-scS" id="xpJ-Cn-hnL"/>
                 <outlet property="hero" destination="OIh-ah-2bH" id="QfZ-9B-Fyq"/>
                 <outlet property="hpHeroLabel" destination="sK2-QK-Gl2" id="2Ug-7a-O5N"/>
                 <outlet property="hpMonsterLabel" destination="DnV-Y0-tc2" id="P0C-Fq-y83"/>
@@ -45,6 +46,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK0-RS-zfk">
                     <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etK-lj-scS">
+                            <rect key="frame" x="67" y="224" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZL-j1-cxa">
                             <rect key="frame" x="8" y="112" width="55" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

@@ -12,7 +12,7 @@
         <!--move-->
         <scene sceneID="LW7-dd-3LU">
             <objects>
-                <controller identifier="move" id="oin-ub-31X" customClass="GamePadInterfaceController" customModule="watchOs_Extension">
+                <controller identifier="move" fullScreen="YES" id="oin-ub-31X" customClass="GamePadInterfaceController" customModule="watchOs_Extension">
                     <items>
                         <group width="1" alignment="left" id="5lx-1v-NBz">
                             <items>
@@ -95,7 +95,7 @@
         <!--gameOver-->
         <scene sceneID="xfg-pF-uTm">
             <objects>
-                <controller identifier="gameOver" id="sWx-vv-6fT">
+                <controller identifier="gameOver" fullScreen="YES" id="sWx-vv-6fT">
                     <items>
                         <imageView alignment="center" verticalAlignment="center" image="died" id="bF6-J5-4hQ"/>
                     </items>
