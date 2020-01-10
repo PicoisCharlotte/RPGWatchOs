@@ -81,6 +81,7 @@ class FirstSceneViewController: UIViewController {
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
     }
 
+
 }
 
 extension FirstSceneViewController: WCSessionDelegate {
@@ -106,7 +107,11 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "up pressed"
-                if(self.imageView.frame.minY + self.imageView.frame.height > self.gameArea.frame.minY) {
+                print("imageView minY : \(self.imageView.frame.minY)")
+                print("imageView minY + height : \(self.imageView.frame.minY + self.imageView.frame.height)")
+                print("gameArea minY : \(self.gameArea.frame.minY)")
+                
+                if(self.imageView.frame.minY > self.gameArea.frame.minY) {
                 UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.y -= 30})
                 } else {
                     print("Image goes out of screen on the top")
@@ -155,6 +160,23 @@ extension FirstSceneViewController: WCSessionDelegate {
             }
         }
         
+        if message["request"] as? String == "potion" {
+            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
+            DispatchQueue.main.async {
+                self.hpHeroLabel.text = String(self.heroDeclaration.hpHero)
+
+                let gap = Int(self.heroMaxHp)! - self.heroDeclaration.hpHero
+                if gap <= 10 {
+                    self.heroDeclaration.hpHero += gap
+                } else {
+                    self.heroDeclaration.hpHero += 10
+                }
+                
+                self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+            }
+        }
+        
         if message["request"] as? String == "action" {
             DispatchQueue.main.async {
                 self.label.text = "action pressed"
@@ -174,22 +196,29 @@ extension FirstSceneViewController: WCSessionDelegate {
                         let monsterName: String = (Monster.TypeMonster.babyMonster).rawValue + " : "
                         self.babyMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
                         self.hpMonsterLabel.text = monsterName + String(self.babyMonsterDeclaration.hpMonster) + " / " + self.babymonsterMaxHp
-                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
-                        
+                       
                         defeatMonster(monster: self.babyMonsterDeclaration, image: self.babyMonster, monsterName: monsterName)
+                        
+                        
 
                         guard self.timer == nil else { return }
                         self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
                             timer in self.heroDeclaration.takeDamage(damage: self.babyMonsterDeclaration.attack())
                             
+                                self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                            
                             stopTimer(monster: self.babyMonsterDeclaration)
                             
                         }
+                
+                        print("AFTER DEAFEAT  -> self.heroDeclaration.hpHero \(self.heroDeclaration.hpHero)")
+
                     }
                     
                     if self.potion {
                         replyHandler(["item" : "potion"])
                         self.potion = false
+                        self.babyMonster.isHidden = true
                     }
                     
                 } else if (checkIfIsOnImage(image: self.juniorMonster)) {
@@ -200,24 +229,33 @@ extension FirstSceneViewController: WCSessionDelegate {
                         self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
                         
                         self.hpMonsterLabel.text = monsterName + String(self.juniorMonsterDeclaration.hpMonster) + " / " + self.juniormonsterMaxHp
-                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                       
                         
                         defeatMonster(monster: self.juniorMonsterDeclaration, image: self.juniorMonster, monsterName: monsterName)
+                        
                         
                         guard self.timer == nil else { return }
                         self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
                             timer in self.heroDeclaration.takeDamage(damage: self.juniorMonsterDeclaration.attack())
                             
+                            self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
                             
                             stopTimer(monster: self.juniorMonsterDeclaration)
                             
                         }
+                        
+                        print("AFTER DEAFEAT  -> self.heroDeclaration.hpHero \(self.heroDeclaration.hpHero)")
+
+                    }
+                    if self.potion {
+                        replyHandler(["item" : "potion"])
+                        self.potion = false
+                        self.juniorMonster.isHidden = true
                     }
                 }
-                if self.potion {
-                    replyHandler(["item" : "potion"])
-                    self.potion = false
-                }
+                
+                
+               
             }
         }
         
@@ -268,7 +306,12 @@ extension FirstSceneViewController: WCSessionDelegate {
         
         func checkIfIsOnImage(image: UIImageView) -> Bool {
             if self.imageView.frame.maxY >= image.frame.minY
-                && self.imageView.frame.maxY <= image.frame.maxY {
+                && self.imageView.frame.maxY <= image.frame.maxY
+                && self.imageView.frame.maxX <= image.frame.maxX
+                && self.imageView.frame.minX <= image.frame.minX {
+
+                
+                    
                 return true
             }
             return false
