@@ -27,8 +27,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     @IBAction func onTouchAction() {
         if isReachable() {
-            print("IPhone is reachable")
-        
             session.sendMessage(["request" : "action"], replyHandler: {reply in
                 let item = reply["item"] as? String
                 self.inventoryInterfaceController.addRowInInventory(item: item!)
@@ -50,7 +48,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     func manageDirection(direction: String) {
         if isReachable() {
-            print("IPhone is reachable")
             session.sendMessage(["request" : direction], replyHandler: {reply in
                 self.label.setText(reply["version"] as? String)
             }, errorHandler: {error in

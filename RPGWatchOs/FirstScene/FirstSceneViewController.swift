@@ -218,7 +218,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     if self.potion {
                         replyHandler(["item" : "potion"])
                         self.potion = false
-                        self.babyMonster.isHidden = true
+                        self.babyMonster.removeFromSuperview()
                     }
                     
                 } else if (checkIfIsOnImage(image: self.juniorMonster)) {
@@ -243,19 +243,13 @@ extension FirstSceneViewController: WCSessionDelegate {
                             stopTimer(monster: self.juniorMonsterDeclaration)
                             
                         }
-                        
-                        print("AFTER DEAFEAT  -> self.heroDeclaration.hpHero \(self.heroDeclaration.hpHero)")
-
                     }
                     if self.potion {
                         replyHandler(["item" : "potion"])
                         self.potion = false
-                        self.juniorMonster.isHidden = true
+                        self.juniorMonster.removeFromSuperview()
                     }
                 }
-                
-                
-               
             }
         }
         

@@ -19,4 +19,10 @@ class Inventory {
     func addItem(item: String){
         items.append(item)
     }
+    
+    func removeItem(item: String) {
+        if let index = items.index(of: item) {
+            items.remove(at: index)
+        }
+    }
 }

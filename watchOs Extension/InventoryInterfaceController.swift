@@ -15,21 +15,23 @@ class InventoryInterfaceController: WKInterfaceController {
     
     @IBOutlet var label: WKInterfaceLabel!
     @IBOutlet var inventoryTableView: WKInterfaceTable!
-    var keyList: [String] = []
+    var list: [String] = []
+    
+    let inventoryShared = Inventory.sharedInventory
     
     static let instance = InventoryTableRowController()
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        self.keyList = Inventory.sharedInventory.items
+        self.list = self.inventoryShared.items
         
-        self.inventoryTableView.setNumberOfRows(keyList.count, withRowType: "inventoryCell")
+        self.inventoryTableView.setNumberOfRows(list.count, withRowType: "inventoryCell")
         
-        for index in 0 ..< self.keyList.count {
+        for index in 0 ..< self.list.count {
             if let cellController =
                 self.inventoryTableView.rowController(at: index) as? InventoryTableRowController {
-                cellController.inventoryCell.setText(keyList[index])
+                cellController.inventoryCell.setText(list[index])
             }
         }
     }
@@ -42,8 +44,20 @@ class InventoryInterfaceController: WKInterfaceController {
             }, errorHandler: {error in
                 print("ERROR : ", error)
             })
+          
+            removeRowInInventory(item: item)
+        
         } else {
             print("IPhone is not reachable")
+        }
+        inventoryTableView.setNumberOfRows(self.inventoryShared.items.count, withRowType: "inventoryCell")
+        
+        for index in 0 ..< self.list.count {
+            print(list[index])
+            if let cellController =
+                self.inventoryTableView.rowController(at: index) as? InventoryTableRowController {
+                cellController.inventoryCell.setText(list[index])
+            }
         }
     }
     
@@ -52,6 +66,11 @@ class InventoryInterfaceController: WKInterfaceController {
     }
     
     func addRowInInventory(item: String) {
-        Inventory.sharedInventory.addItem(item: item)
+        self.inventoryShared.addItem(item: item)
+    }
+    
+    func removeRowInInventory(item: String) {
+        print("self.inventoryShared.items : \(self.inventoryShared.items)")
+        self.inventoryShared.removeItem(item: item)
     }
 }
