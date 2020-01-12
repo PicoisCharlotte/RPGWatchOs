@@ -26,14 +26,7 @@ class InventoryInterfaceController: WKInterfaceController {
         
         self.list = self.inventoryShared.items
         
-        self.inventoryTableView.setNumberOfRows(list.count, withRowType: "inventoryCell")
-        
-        for index in 0 ..< self.list.count {
-            if let cellController =
-                self.inventoryTableView.rowController(at: index) as? InventoryTableRowController {
-                cellController.inventoryCell.setText(list[index])
-            }
-        }
+       reloadTable(tableList: list)
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
@@ -50,19 +43,22 @@ class InventoryInterfaceController: WKInterfaceController {
         } else {
             print("IPhone is not reachable")
         }
-        inventoryTableView.setNumberOfRows(self.inventoryShared.items.count, withRowType: "inventoryCell")
-        
-        for index in 0 ..< self.list.count {
-            print(list[index])
-            if let cellController =
-                self.inventoryTableView.rowController(at: index) as? InventoryTableRowController {
-                cellController.inventoryCell.setText(list[index])
-            }
-        }
+        reloadTable(tableList: self.inventoryShared.items)
     }
     
     private func isReachable() -> Bool {
         return session.isReachable
+    }
+    
+    func reloadTable(tableList: [String]) {
+        inventoryTableView.setNumberOfRows(tableList.count, withRowType: "inventoryCell")
+
+        for index in 0 ..< tableList.count {
+            if let cellController =
+                self.inventoryTableView.rowController(at: index) as? InventoryTableRowController {
+                cellController.inventoryCell.setText(tableList[index])
+            }
+        }
     }
     
     func addRowInInventory(item: String) {
