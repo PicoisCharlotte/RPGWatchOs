@@ -19,4 +19,12 @@ class Inventory {
     func addItem(item: String){
         items.append(item)
     }
+    
+    func removeItem(item: String){
+        if let index = self.items.firstIndex(where: {
+            $0 == item
+        }){
+            self.items.remove(at: index)
+        }
+    }
 }

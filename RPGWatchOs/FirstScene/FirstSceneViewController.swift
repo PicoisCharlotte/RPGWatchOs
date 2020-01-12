@@ -164,7 +164,6 @@ extension FirstSceneViewController: WCSessionDelegate {
                 } else {
                     print("Image goes out of screen on the right")
                 }
-                changeStatusLock()
             }
         }
         
@@ -179,6 +178,19 @@ extension FirstSceneViewController: WCSessionDelegate {
                 UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.y += 30})
                 } else {
                     print("Image goes out of screen on the bottom")
+                }
+            }
+        }
+        
+        if message["request"] as? String == "yellow key" {
+            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            
+            DispatchQueue.main.async {
+
+                print("click on yellow key")
+                if checkIfIsOnImage(image: self.lock) {
+                    changeStatusLock()
+                    replyHandler(["message" : "yellow key used"])
                 }
             }
         }
@@ -246,10 +258,9 @@ extension FirstSceneViewController: WCSessionDelegate {
                 guard let characteristic = accessory.findCharacteristic(type: HMCharacteristicTypeTargetLockMechanismState),
                     let value = characteristic.value as? Int,
                     let state = HMCharacteristicValueLockMechanismState(rawValue: value) else { continue }
+                print(characteristic.value)
                 if state == .secured {
                     characteristic.writeValue(0) { (_) in }
-                } else if state == .unsecured {
-                    characteristic.writeValue(1) { (_) in }
                 }
             }
         }
