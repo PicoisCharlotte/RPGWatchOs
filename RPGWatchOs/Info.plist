@@ -26,6 +26,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSHomeKitUsageDescription</key>
+	<string>pouet.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -23,6 +23,16 @@
 		1D0C136823BCFC08009F0C28 /* FirstSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */; };
 		1D0C136A23BD00DA009F0C28 /* GamePadInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C136923BD00DA009F0C28 /* GamePadInterfaceController.swift */; };
 		1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C136B23BD0708009F0C28 /* RedrawImageView.swift */; };
+		1D0C357F23CB7EEA0064F64D /* LockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C357E23CB7EEA0064F64D /* LockController.swift */; };
+		1D0C358323CB7F640064F64D /* ConfigHomeKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C358123CB7F640064F64D /* ConfigHomeKitViewController.swift */; };
+		1D0C358423CB7F640064F64D /* ConfigHomeKitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C358223CB7F640064F64D /* ConfigHomeKitViewController.xib */; };
+		1D0C358723CB83A00064F64D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C358523CB83A00064F64D /* HomeViewController.swift */; };
+		1D0C358823CB83A00064F64D /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C358623CB83A00064F64D /* HomeViewController.xib */; };
+		1D0C358B23CB83EC0064F64D /* LocksSearchViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C358923CB83EC0064F64D /* LocksSearchViewControllerViewController.swift */; };
+		1D0C358C23CB83EC0064F64D /* LocksSearchViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D0C358A23CB83EC0064F64D /* LocksSearchViewControllerViewController.xib */; };
+		1D0C358F23CB84660064F64D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C358E23CB84660064F64D /* Constants.swift */; };
+		1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C359023CB84890064F64D /* ListLocksManager.swift */; };
+		1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C359223CB84A40064F64D /* SharedHomeManager.swift */; };
 		1D0CCBFF23C2042200726119 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFE23C2042200726119 /* Inventory.swift */; };
 		1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */; };
 		1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */; };
@@ -91,6 +101,16 @@
 		1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstSceneViewController.xib; sourceTree = "<group>"; };
 		1D0C136923BD00DA009F0C28 /* GamePadInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePadInterfaceController.swift; sourceTree = "<group>"; };
 		1D0C136B23BD0708009F0C28 /* RedrawImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedrawImageView.swift; sourceTree = "<group>"; };
+		1D0C357E23CB7EEA0064F64D /* LockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockController.swift; sourceTree = "<group>"; };
+		1D0C358123CB7F640064F64D /* ConfigHomeKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigHomeKitViewController.swift; sourceTree = "<group>"; };
+		1D0C358223CB7F640064F64D /* ConfigHomeKitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigHomeKitViewController.xib; sourceTree = "<group>"; };
+		1D0C358523CB83A00064F64D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1D0C358623CB83A00064F64D /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		1D0C358923CB83EC0064F64D /* LocksSearchViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocksSearchViewControllerViewController.swift; sourceTree = "<group>"; };
+		1D0C358A23CB83EC0064F64D /* LocksSearchViewControllerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocksSearchViewControllerViewController.xib; sourceTree = "<group>"; };
+		1D0C358E23CB84660064F64D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1D0C359023CB84890064F64D /* ListLocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLocksManager.swift; sourceTree = "<group>"; };
+		1D0C359223CB84A40064F64D /* SharedHomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHomeManager.swift; sourceTree = "<group>"; };
 		1D0CCBFE23C2042200726119 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableRowController.swift; sourceTree = "<group>"; };
 		1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryInterfaceController.swift; sourceTree = "<group>"; };
@@ -154,6 +174,8 @@
 		1D0C132C23BCFBB0009F0C28 /* RPGWatchOs */ = {
 			isa = PBXGroup;
 			children = (
+				1D0C358D23CB84540064F64D /* Manager */,
+				1D0C358023CB7F420064F64D /* HomeKit */,
 				1D0726D523C8A6670014D43C /* Model */,
 				1D0C136423BCFBE6009F0C28 /* FirstScene */,
 				1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */,
@@ -195,8 +217,32 @@
 				1D0C136523BCFC08009F0C28 /* FirstSceneViewController.swift */,
 				1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */,
 				02BCF45F23C4C0540044A351 /* FightManager.swift */,
+				1D0C357E23CB7EEA0064F64D /* LockController.swift */,
 			);
 			path = FirstScene;
+			sourceTree = "<group>";
+		};
+		1D0C358023CB7F420064F64D /* HomeKit */ = {
+			isa = PBXGroup;
+			children = (
+				1D0C358123CB7F640064F64D /* ConfigHomeKitViewController.swift */,
+				1D0C358223CB7F640064F64D /* ConfigHomeKitViewController.xib */,
+				1D0C358523CB83A00064F64D /* HomeViewController.swift */,
+				1D0C358623CB83A00064F64D /* HomeViewController.xib */,
+				1D0C358923CB83EC0064F64D /* LocksSearchViewControllerViewController.swift */,
+				1D0C358A23CB83EC0064F64D /* LocksSearchViewControllerViewController.xib */,
+			);
+			path = HomeKit;
+			sourceTree = "<group>";
+		};
+		1D0C358D23CB84540064F64D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1D0C358E23CB84660064F64D /* Constants.swift */,
+				1D0C359023CB84890064F64D /* ListLocksManager.swift */,
+				1D0C359223CB84A40064F64D /* SharedHomeManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,8 +347,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0C358C23CB83EC0064F64D /* LocksSearchViewControllerViewController.xib in Resources */,
 				1D0C136823BCFC08009F0C28 /* FirstSceneViewController.xib in Resources */,
 				1D0C133823BCFBB2009F0C28 /* LaunchScreen.storyboard in Resources */,
+				1D0C358823CB83A00064F64D /* HomeViewController.xib in Resources */,
+				1D0C358423CB7F640064F64D /* ConfigHomeKitViewController.xib in Resources */,
 				1D0C133523BCFBB2009F0C28 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,10 +381,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				02BCF46023C4C0540044A351 /* FightManager.swift in Sources */,
+				1D0C358F23CB84660064F64D /* Constants.swift in Sources */,
 				1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */,
+				1D0C357F23CB7EEA0064F64D /* LockController.swift in Sources */,
 				1D09042F23C37CD9005F7CB8 /* Monster.swift in Sources */,
+				1D0C358B23CB83EC0064F64D /* LocksSearchViewControllerViewController.swift in Sources */,
 				1D0C136723BCFC08009F0C28 /* FirstSceneViewController.swift in Sources */,
+				1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */,
+				1D0C358723CB83A00064F64D /* HomeViewController.swift in Sources */,
+				1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */,
 				1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */,
+				1D0C358323CB7F640064F64D /* ConfigHomeKitViewController.swift in Sources */,
 				1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

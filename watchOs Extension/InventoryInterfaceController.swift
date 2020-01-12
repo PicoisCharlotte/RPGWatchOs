@@ -40,6 +40,18 @@ class InventoryInterfaceController: WKInterfaceController {
           
             removeRowInInventory(item: item)
         
+            if Inventory.sharedInventory.items[rowIndex] == "yellow key" {
+                
+                session.sendMessage(["request" : "yellow key"], replyHandler: {reply in
+                    self.label.setText(reply["version"] as? String)
+                }, errorHandler: {error in
+                    // catch any errors here
+                    print("ERROR : ", error)
+                })
+                
+                
+            }
+            
         } else {
             print("IPhone is not reachable")
         }
