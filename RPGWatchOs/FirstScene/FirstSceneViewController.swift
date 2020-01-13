@@ -13,6 +13,8 @@ import HomeKit
 class FirstSceneViewController: UIViewController {
     @IBOutlet var gameOverImageView: UIImageView!
     
+    var unlock: Bool = false
+    
     let CONST_MONSTER_HP: String = "-- / --"
     let CONST_LABEL_HERO: String = "Hero HP : "
     
@@ -280,12 +282,24 @@ extension FirstSceneViewController: WCSessionDelegate {
                             stopTimer(monster: self.juniorMonsterDeclaration)
                             
                         }
+
                     }
                     if self.potion {
                         replyHandler(["item" : "potion"])
                         self.potion = false
                         self.juniorMonster.removeFromSuperview()
                     }
+
+                }
+                if self.unlock {
+                    let secondSceneViewController = SecondSceneViewController(nibName: "SecondSceneViewController", bundle: nil)
+                    
+                    secondSceneViewController.heroHpFromFirstScene = self.heroDeclaration.hpHero
+                    secondSceneViewController.heroDamageFromFirstScene = self.heroDeclaration.damageHero
+                    
+                        secondSceneViewController.heroMaxHp =  self.heroMaxHp
+                    self.navigationController?.pushViewController(secondSceneViewController, animated: true)
+
                 }
             }
         }
@@ -299,6 +313,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                 print(characteristic.value)
                 if state == .secured {
                     characteristic.writeValue(0) { (_) in }
+                    self.unlock = true
                 }
             }
         }
@@ -340,6 +355,8 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                     self.monsters.remove(at: index)
                     self.hpMonsterLabel.text = monsterName + " has been defeated"
+                     self.unlock = true
+
                 }
               
             }

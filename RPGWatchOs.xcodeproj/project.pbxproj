@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		02BCF46023C4C0540044A351 /* FightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF45F23C4C0540044A351 /* FightManager.swift */; };
+		1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */; };
+		1D08043723CCDC0D005CFCF7 /* SecondSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */; };
 		1D09042F23C37CD9005F7CB8 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09042723C36DC5005F7CB8 /* Monster.swift */; };
 		1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09042A23C36FD8005F7CB8 /* Hero.swift */; };
 		1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */; };
@@ -82,6 +84,8 @@
 
 /* Begin PBXFileReference section */
 		02BCF45F23C4C0540044A351 /* FightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightManager.swift; sourceTree = "<group>"; };
+		1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSceneViewController.swift; sourceTree = "<group>"; };
+		1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondSceneViewController.xib; sourceTree = "<group>"; };
 		1D09042723C36DC5005F7CB8 /* Monster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
 		1D09042A23C36FD8005F7CB8 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		1D0C132A23BCFBB0009F0C28 /* RPGWatchOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGWatchOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1D08043323CCDBEF005CFCF7 /* SecondScene */ = {
+			isa = PBXGroup;
+			children = (
+				1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */,
+				1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */,
+			);
+			path = SecondScene;
+			sourceTree = "<group>";
+		};
 		1D09042923C36DC9005F7CB8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +187,7 @@
 		1D0C132C23BCFBB0009F0C28 /* RPGWatchOs */ = {
 			isa = PBXGroup;
 			children = (
+				1D08043323CCDBEF005CFCF7 /* SecondScene */,
 				1D0C358D23CB84540064F64D /* Manager */,
 				1D0C358023CB7F420064F64D /* HomeKit */,
 				1D0726D523C8A6670014D43C /* Model */,
@@ -353,6 +367,7 @@
 				1D0C358823CB83A00064F64D /* HomeViewController.xib in Resources */,
 				1D0C358423CB7F640064F64D /* ConfigHomeKitViewController.xib in Resources */,
 				1D0C133523BCFBB2009F0C28 /* Assets.xcassets in Resources */,
+				1D08043723CCDC0D005CFCF7 /* SecondSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +404,7 @@
 				1D0C136723BCFC08009F0C28 /* FirstSceneViewController.swift in Sources */,
 				1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */,
 				1D0C358723CB83A00064F64D /* HomeViewController.swift in Sources */,
+				1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */,
 				1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */,
 				1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */,
 				1D0C358323CB7F640064F64D /* ConfigHomeKitViewController.swift in Sources */,

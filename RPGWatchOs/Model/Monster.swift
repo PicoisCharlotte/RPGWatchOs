@@ -42,7 +42,7 @@ class Monster : Fight {
     enum TypeMonster: String {
         case babyMonster = "babyMonster"
         case juniorMonster = "juniorMonster"
-        case seniorMonster
+        case seniorMonster = "seniorMonster"
         case bossMonster
         
         var instance: Monster {

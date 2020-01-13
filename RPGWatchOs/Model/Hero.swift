@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class Hero : Fight{
-    
     var hpHero: Int
     var damageHero: Int = 5
     var imageHero: UIImage = UIImage(named: "hero")!
@@ -19,6 +18,8 @@ class Hero : Fight{
         self.hpHero = hp
         self.damageHero = damage
     }
+    
+   
     
     func attack() -> Int {
         let lower = self.damageHero - 2

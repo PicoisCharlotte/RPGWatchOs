@@ -35,6 +35,7 @@ class HomeViewController: UIViewController {
                 self.presentAlert(message: "Impossible de créer la maison avec le nom '\("RPG Home")'")
                 return
             }
+            print(err as Any)
             self.dismiss(animated: true)
         }
         
