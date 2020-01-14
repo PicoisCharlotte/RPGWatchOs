@@ -218,6 +218,7 @@ extension FirstSceneViewController: WCSessionDelegate {
         
         if message["request"] as? String == "action" {
             DispatchQueue.main.async {
+                
                 self.label.text = "action pressed"
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
@@ -228,6 +229,8 @@ extension FirstSceneViewController: WCSessionDelegate {
                     self.chest.image = UIImage(named: "openchest")
                     
                     self.isChestOpen = true
+                    
+                  
                     
                 } else if (checkIfIsOnImage(image: self.babyMonster)) {
                         if self.babyMonsterDeclaration.hpMonster > 0 {
@@ -290,7 +293,11 @@ extension FirstSceneViewController: WCSessionDelegate {
                         self.juniorMonster.removeFromSuperview()
                     }
 
+                } else if (checkIfIsOnImage(image: self.lock))
+                    && self.monsters.count == 0 {
+                    self.unlock = true
                 }
+                
                 if self.unlock {
                     let secondSceneViewController = SecondSceneViewController(nibName: "SecondSceneViewController", bundle: nil)
                     
@@ -355,7 +362,6 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                     self.monsters.remove(at: index)
                     self.hpMonsterLabel.text = monsterName + " has been defeated"
-                     self.unlock = true
 
                 }
               
@@ -379,7 +385,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                 && self.imageView.frame.maxY <= image.frame.maxY
                 && self.imageView.frame.maxX <= image.frame.maxX
                 && self.imageView.frame.minX <= image.frame.minX {
-                
+  
                 return true
             }
             return false
@@ -387,8 +393,8 @@ extension FirstSceneViewController: WCSessionDelegate {
     }
 }
 
-extension HMAccessory {
 
+extension HMAccessory {
     func findCharacteristic(type: String) -> HMCharacteristic? {
         for service in self.services{
             for characteristic in service.characteristics{
