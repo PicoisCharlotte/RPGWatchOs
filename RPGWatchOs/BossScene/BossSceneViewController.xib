@@ -19,6 +19,7 @@
                 <outlet property="hpBossLabel" destination="R9g-Uh-pUU" id="ejf-wX-6Xh"/>
                 <outlet property="hpHeroLabel" destination="ysV-m0-gvG" id="Loc-dk-Gqm"/>
                 <outlet property="label" destination="ELM-Fv-AL6" id="KnC-lH-ONt"/>
+                <outlet property="victory" destination="KwN-Er-emS" id="pXt-Jr-KXU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -39,9 +40,8 @@
                     <color key="textColor" red="0.20036641590000001" green="1" blue="0.129277006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Q3-7i-uTC">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Q3-7i-uTC">
                     <rect key="frame" x="0.0" y="90" width="375" height="577"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELM-Fv-AL6">
                             <rect key="frame" x="166" y="278" width="0.0" height="0.0"/>
@@ -50,16 +50,20 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJt-mt-JdM">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TJt-mt-JdM">
                             <rect key="frame" x="149" y="-9" width="55" height="44.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DuX-8k-5IM">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DuX-8k-5IM">
                             <rect key="frame" x="67" y="224" width="240" height="240"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mmN-fq-g4s">
                             <rect key="frame" x="67" y="224" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KwN-Er-emS">
+                            <rect key="frame" x="67" y="62" width="240" height="122"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
@@ -69,12 +73,17 @@
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
+                <constraint firstItem="5Q3-7i-uTC" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="0k9-it-TpU"/>
+                <constraint firstItem="5Q3-7i-uTC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="H0k-vt-PDD"/>
+                <constraint firstItem="5Q3-7i-uTC" firstAttribute="top" secondItem="ysV-m0-gvG" secondAttribute="bottom" constant="29" id="MBu-sn-o2j"/>
                 <constraint firstItem="R9g-Uh-pUU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="aLb-cf-u8g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ysV-m0-gvG" secondAttribute="trailing" constant="10" id="fxZ-lE-QHm"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R9g-Uh-pUU" secondAttribute="trailing" constant="10" id="lMP-9e-cAS"/>
                 <constraint firstItem="ysV-m0-gvG" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="nRo-Qb-Ii5"/>
+                <constraint firstItem="5Q3-7i-uTC" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="pRr-pX-Vb9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="134.48275862068968"/>
         </view>
     </objects>
 </document>

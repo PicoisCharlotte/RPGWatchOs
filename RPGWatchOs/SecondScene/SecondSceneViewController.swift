@@ -298,6 +298,13 @@ extension SecondSceneViewController: WCSessionDelegate {
                 }
                 if self.unlock {
                    print("unlock")
+                    let bossSceneViewController = BossSceneViewController(nibName: "BossSceneViewController", bundle: nil)
+                    
+                    bossSceneViewController.heroHpFromPreviousScene = self.heroDeclaration.hpHero
+                    bossSceneViewController.heroDamageFromPreviousScene = self.heroDeclaration.damageHero
+                    
+                    bossSceneViewController.heroMaxHp =  self.heroMaxHp
+                    self.navigationController?.pushViewController(bossSceneViewController, animated: true)
                     
                 }
             }

@@ -300,8 +300,8 @@ extension FirstSceneViewController: WCSessionDelegate {
                 if self.unlock {
                     let secondSceneViewController = SecondSceneViewController(nibName: "SecondSceneViewController", bundle: nil)
                     
-                    secondSceneViewController.heroHpFromFirstScene = self.heroDeclaration.hpHero
-                    secondSceneViewController.heroDamageFromFirstScene = self.heroDeclaration.damageHero
+                    secondSceneViewController.heroHpFromPreviousScene = self.heroDeclaration.hpHero
+                    secondSceneViewController.heroDamageFromPreviousScene = self.heroDeclaration.damageHero
                     
                         secondSceneViewController.heroMaxHp =  self.heroMaxHp
                     self.navigationController?.pushViewController(secondSceneViewController, animated: true)
