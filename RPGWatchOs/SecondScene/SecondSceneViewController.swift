@@ -14,8 +14,8 @@ class SecondSceneViewController: UIViewController {
     let CONST_MONSTER_HP: String = "-- / --"
     let CONST_LABEL_HERO: String = "Hero HP : "
     
-    var heroHpFromFirstScene: Int = 0
-    var heroDamageFromFirstScene: Int = 0
+    var heroHpFromPreviousScene: Int = 0
+    var heroDamageFromPreviousScene: Int = 0
     
     var heroDeclaration: Hero = Hero(hp: 0, damage: 0)
     
@@ -62,8 +62,8 @@ class SecondSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.heroDeclaration.hpHero = heroHpFromFirstScene
-        self.heroDeclaration.damageHero = heroDamageFromFirstScene
+        self.heroDeclaration.hpHero = heroHpFromPreviousScene
+        self.heroDeclaration.damageHero = heroDamageFromPreviousScene
         
         self.juniormonsterMaxHp = String(self.juniorMonsterDeclaration.hpMonster)
         self.seniormonsterMaxHp = String(self.seniorMonsterDeclaration.hpMonster)
@@ -75,13 +75,6 @@ class SecondSceneViewController: UIViewController {
             session.delegate = self
             session.activate()
         }
-        
-        
-        print("self.lock.frame.minY : \(self.bossLock.frame.minY)")
-        print("self.lock.frame.maxY : \(self.bossLock.frame.maxY)")
-        print("self.lock.frame.minX : \(self.bossLock.frame.minX)")
-        print("self.lock.frame.maxX : \(self.bossLock.frame.maxX)")
-        
         
         hero.image = heroDeclaration.imageHero
         juniorMonster.image = juniorMonsterDeclaration.imageMonster
@@ -118,17 +111,16 @@ class SecondSceneViewController: UIViewController {
 }
 
 extension SecondSceneViewController: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print("activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
+    }
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
         
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
         
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("activationDidCompleteWith activationState:\(activationState) error:\(String(describing: error))")
-
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
@@ -227,10 +219,6 @@ extension SecondSceneViewController: WCSessionDelegate {
         
         if message["request"] as? String == "action" {
             DispatchQueue.main.async {
-                print("self.hero.frame.minY : \(self.hero.frame.minY)")
-                print("self.hero.frame.maxY : \(self.hero.frame.maxY)")
-                print("self.hero.frame.minX : \(self.hero.frame.minX)")
-                print("self.hero.frame.maxX : \(self.hero.frame.maxX)")
                 
                 self.label.text = "action pressed"
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()

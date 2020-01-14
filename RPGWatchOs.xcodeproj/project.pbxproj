@@ -37,6 +37,8 @@
 		1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C359223CB84A40064F64D /* SharedHomeManager.swift */; };
 		1D0CCBFF23C2042200726119 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFE23C2042200726119 /* Inventory.swift */; };
 		1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */; };
+		1D7CC1B823CE48F600A7FC5D /* BossSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */; };
+		1D7CC1B923CE48F600A7FC5D /* BossSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */; };
 		1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +119,8 @@
 		1D0C359223CB84A40064F64D /* SharedHomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHomeManager.swift; sourceTree = "<group>"; };
 		1D0CCBFE23C2042200726119 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableRowController.swift; sourceTree = "<group>"; };
+		1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossSceneViewController.swift; sourceTree = "<group>"; };
+		1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BossSceneViewController.xib; sourceTree = "<group>"; };
 		1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +191,7 @@
 		1D0C132C23BCFBB0009F0C28 /* RPGWatchOs */ = {
 			isa = PBXGroup;
 			children = (
+				1D7CC1B523CE48DD00A7FC5D /* BossScene */,
 				1D08043323CCDBEF005CFCF7 /* SecondScene */,
 				1D0C358D23CB84540064F64D /* Manager */,
 				1D0C358023CB7F420064F64D /* HomeKit */,
@@ -257,6 +262,15 @@
 				1D0C359223CB84A40064F64D /* SharedHomeManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		1D7CC1B523CE48DD00A7FC5D /* BossScene */ = {
+			isa = PBXGroup;
+			children = (
+				1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */,
+				1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */,
+			);
+			path = BossScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D7CC1B923CE48F600A7FC5D /* BossSceneViewController.xib in Resources */,
 				1D0C358C23CB83EC0064F64D /* LocksSearchViewControllerViewController.xib in Resources */,
 				1D0C136823BCFC08009F0C28 /* FirstSceneViewController.xib in Resources */,
 				1D0C133823BCFBB2009F0C28 /* LaunchScreen.storyboard in Resources */,
@@ -403,6 +418,7 @@
 				1D0C358B23CB83EC0064F64D /* LocksSearchViewControllerViewController.swift in Sources */,
 				1D0C136723BCFC08009F0C28 /* FirstSceneViewController.swift in Sources */,
 				1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */,
+				1D7CC1B823CE48F600A7FC5D /* BossSceneViewController.swift in Sources */,
 				1D0C358723CB83A00064F64D /* HomeViewController.swift in Sources */,
 				1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */,
 				1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */,

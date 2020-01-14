@@ -19,7 +19,6 @@
                 <outlet property="hero" destination="OIh-ah-2bH" id="QfZ-9B-Fyq"/>
                 <outlet property="hpHeroLabel" destination="sK2-QK-Gl2" id="2Ug-7a-O5N"/>
                 <outlet property="hpMonsterLabel" destination="DnV-Y0-tc2" id="P0C-Fq-y83"/>
-                <outlet property="imageView" destination="OIh-ah-2bH" id="fSM-3m-N9J"/>
                 <outlet property="juniorMonster" destination="94b-AL-fgK" id="quv-a5-xFE"/>
                 <outlet property="label" destination="ymT-vS-rQs" id="XPK-Vp-MEl"/>
                 <outlet property="lock" destination="Kup-1g-ik6" id="E07-Lh-LAW"/>

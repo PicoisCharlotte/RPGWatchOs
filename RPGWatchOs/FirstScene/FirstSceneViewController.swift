@@ -36,7 +36,6 @@ class FirstSceneViewController: UIViewController {
     @IBOutlet var label: UILabel!
     
     private var session = WCSession.default
-    @IBOutlet var imageView: UIImageView!
     @IBOutlet var chest: UIImageView!
     @IBOutlet var lock: UIImageView!
     
@@ -133,12 +132,12 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "up pressed"
-                print("imageView minY : \(self.imageView.frame.minY)")
-                print("imageView minY + height : \(self.imageView.frame.minY + self.imageView.frame.height)")
+                print("hero minY : \(self.hero.frame.minY)")
+                print("hero minY + height : \(self.hero.frame.minY + self.hero.frame.height)")
                 print("gameArea minY : \(self.gameArea.frame.minY)")
                 
-                if(self.imageView.frame.minY > self.gameArea.frame.minY) {
-                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.y -= 30})
+                if(self.hero.frame.minY > self.gameArea.frame.minY) {
+                UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.y -= 30})
                 } else {
                     print("Image goes out of screen on the top")
                 }
@@ -151,8 +150,8 @@ extension FirstSceneViewController: WCSessionDelegate {
             
             DispatchQueue.main.async {
                 self.label.text = "left pressed"
-                if(self.imageView.frame.maxX - self.imageView.frame.width > self.gameArea.frame.minX) {
-                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.x -= 30})
+                if(self.hero.frame.maxX - self.hero.frame.width > self.gameArea.frame.minX) {
+                UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.x -= 30})
                 } else {
                      print("Image goes out of screen on the left")
                 }
@@ -163,9 +162,9 @@ extension FirstSceneViewController: WCSessionDelegate {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
             DispatchQueue.main.async {
-                if (self.imageView.frame.maxX < self.gameArea.frame.maxX) {
+                if (self.hero.frame.maxX < self.gameArea.frame.maxX) {
                 self.label.text = "right pressed"
-                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.x += 30})
+                UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.x += 30})
                 } else {
                     print("Image goes out of screen on the right")
                 }
@@ -178,8 +177,8 @@ extension FirstSceneViewController: WCSessionDelegate {
             DispatchQueue.main.async {
                 self.label.text = "down pressed"
              
-                if self.imageView.frame.maxY + self.imageView.frame.height < self.gameArea.frame.height {
-                UIView.animate(withDuration: 0.3, animations: {self.imageView.frame.origin.y += 30})
+                if self.hero.frame.maxY + self.hero.frame.height < self.gameArea.frame.height {
+                UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.y += 30})
                 } else {
                     print("Image goes out of screen on the bottom")
                 }
@@ -331,7 +330,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                 
                 if self.heroDeclaration.hpHero <= 0 {
                     DispatchQueue.main.async {
-                        self.imageView.isHidden = true
+                        self.hero.isHidden = true
                         self.label.isHidden = true
                         self.hpHeroLabel.text = self.CONST_LABEL_HERO + " 0 / " + self.heroMaxHp
                         self.gameOverImageView.image = UIImage(named: "died")
@@ -381,10 +380,10 @@ extension FirstSceneViewController: WCSessionDelegate {
         }
         
         func checkIfIsOnImage(image: UIImageView) -> Bool {
-            if self.imageView.frame.maxY >= image.frame.minY
-                && self.imageView.frame.maxY <= image.frame.maxY
-                && self.imageView.frame.maxX <= image.frame.maxX
-                && self.imageView.frame.minX <= image.frame.minX {
+            if self.hero.frame.maxY >= image.frame.minY
+                && self.hero.frame.maxY <= image.frame.maxY
+                && self.hero.frame.maxX <= image.frame.maxX
+                && self.hero.frame.minX <= image.frame.minX {
   
                 return true
             }

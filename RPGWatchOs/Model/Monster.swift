@@ -43,7 +43,7 @@ class Monster : Fight {
         case babyMonster = "babyMonster"
         case juniorMonster = "juniorMonster"
         case seniorMonster = "seniorMonster"
-        case bossMonster
+        case bossMonster = "boss"
         
         var instance: Monster {
             switch self {
