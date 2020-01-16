@@ -31,15 +31,7 @@ class InventoryInterfaceController: WKInterfaceController {
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         let item = Inventory.sharedInventory.items[rowIndex]
-        if isReachable() {
-            session.sendMessage(["request": item], replyHandler: {reply in
-                self.label.setText(reply["version"] as? String)
-            }, errorHandler: {error in
-                print("ERROR : ", error)
-            })
-          
-            removeRowInInventory(item: item)
-        
+        if isReachable() {        
             if Inventory.sharedInventory.items[rowIndex] == "yellow key" {
                 
                 session.sendMessage(["request" : "yellow key"], replyHandler: {reply in
@@ -50,6 +42,14 @@ class InventoryInterfaceController: WKInterfaceController {
                 })
                 
                 
+            } else {
+                session.sendMessage(["request": item], replyHandler: {reply in
+                    self.label.setText(reply["version"] as? String)
+                }, errorHandler: {error in
+                    print("ERROR : ", error)
+                })
+                
+                removeRowInInventory(item: item)
             }
             
         } else {

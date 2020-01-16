@@ -27,16 +27,20 @@ class Monster : Fight {
         return Int(arc4random_uniform(UInt32(upper - lower))) + lower
     }
     
-    func hadPotion() -> Bool {
-        let potion = Bool.random()
-        if potion {
-            return true
-        }
-        return false
-    }
-    
     func takeDamage(damage: Int){
         self.hpMonster -= damage
+    }
+    
+    func setPotion(image: UIImageView) -> Bool {
+        var potion = false
+            if(Bool.random()) {
+                image.image = UIImage(named: "potion")
+                potion = true
+            } else {
+                image.isHidden = true
+                potion = false
+            }
+        return potion
     }
     
     enum TypeMonster: String {

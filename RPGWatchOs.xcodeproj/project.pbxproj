@@ -39,6 +39,7 @@
 		1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */; };
 		1D7CC1B823CE48F600A7FC5D /* BossSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */; };
 		1D7CC1B923CE48F600A7FC5D /* BossSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */; };
+		1DB3BF4523D10F660011AD2B /* DirectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3BF4423D10F660011AD2B /* DirectionManager.swift */; };
 		1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableRowController.swift; sourceTree = "<group>"; };
 		1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossSceneViewController.swift; sourceTree = "<group>"; };
 		1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BossSceneViewController.xib; sourceTree = "<group>"; };
+		1DB3BF4423D10F660011AD2B /* DirectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionManager.swift; sourceTree = "<group>"; };
 		1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,7 +237,6 @@
 			children = (
 				1D0C136523BCFC08009F0C28 /* FirstSceneViewController.swift */,
 				1D0C136623BCFC08009F0C28 /* FirstSceneViewController.xib */,
-				02BCF45F23C4C0540044A351 /* FightManager.swift */,
 				1D0C357E23CB7EEA0064F64D /* LockController.swift */,
 			);
 			path = FirstScene;
@@ -257,9 +258,11 @@
 		1D0C358D23CB84540064F64D /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				02BCF45F23C4C0540044A351 /* FightManager.swift */,
 				1D0C358E23CB84660064F64D /* Constants.swift */,
 				1D0C359023CB84890064F64D /* ListLocksManager.swift */,
 				1D0C359223CB84A40064F64D /* SharedHomeManager.swift */,
+				1DB3BF4423D10F660011AD2B /* DirectionManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */,
 				1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */,
 				1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */,
+				1DB3BF4523D10F660011AD2B /* DirectionManager.swift in Sources */,
 				1D0C358323CB7F640064F64D /* ConfigHomeKitViewController.swift in Sources */,
 				1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */,
 			);

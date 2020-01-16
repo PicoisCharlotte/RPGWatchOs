@@ -14,6 +14,8 @@ class SecondSceneViewController: UIViewController {
     let CONST_MONSTER_HP: String = "-- / --"
     let CONST_LABEL_HERO: String = "Hero HP : "
     
+    var directionManager: DirectionManager = DirectionManager()
+    
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
@@ -108,6 +110,7 @@ class SecondSceneViewController: UIViewController {
     @IBAction func addAccessory(_ sender: Any) {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
+   
 }
 
 extension SecondSceneViewController: WCSessionDelegate {
@@ -123,75 +126,38 @@ extension SecondSceneViewController: WCSessionDelegate {
         
     }
     
+    
+    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         
         if message["request"] as? String == "up" {
-            
-           
-            
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
-            DispatchQueue.main.async {
-                self.label.text = "up pressed"
-                print("imageView minY : \(self.hero.frame.minY)")
-                print("imageView minY + height : \(self.hero.frame.minY + self.hero.frame.height)")
-                print("gameArea minY : \(self.gameArea.frame.minY)")
-                
-                if(self.hero.frame.minY > self.gameArea.frame.minY) {
-                    UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.y -= 30})
-                } else {
-                    print("Image goes out of screen on the top")
-                }
-            }
-            
+            directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "left" {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
-            DispatchQueue.main.async {
-                self.label.text = "left pressed"
-                if(self.hero.frame.maxX - self.hero.frame.width > self.gameArea.frame.minX) {
-                    UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.x -= 30})
-                } else {
-                    print("Image goes out of screen on the left")
-                }
-            }
+            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "right" {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
-            DispatchQueue.main.async {
-                if (self.hero.frame.maxX < self.gameArea.frame.maxX) {
-                    self.label.text = "right pressed"
-                    UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.x += 30})
-                } else {
-                    print("Image goes out of screen on the right")
-                }
-            }
+            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "down" {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
-            DispatchQueue.main.async {
-                self.label.text = "down pressed"
-                
-                if self.hero.frame.maxY + self.hero.frame.height < self.gameArea.frame.height {
-                    UIView.animate(withDuration: 0.3, animations: {self.hero.frame.origin.y += 30})
-                } else {
-                    print("Image goes out of screen on the bottom")
-                }
-            }
+            directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "boss key" {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
             DispatchQueue.main.async {
-                
-                print("click on yellow key")
                 if checkIfIsOnImage(image: self.bossLock) {
                     changeStatusLock()
                     replyHandler(["message" : "yellow key used"])
@@ -202,25 +168,13 @@ extension SecondSceneViewController: WCSessionDelegate {
         if message["request"] as? String == "potion" {
             replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
             
-            DispatchQueue.main.async {
-                self.hpHeroLabel.text = String(self.heroDeclaration.hpHero)
-                
-                let gap = Int(self.heroMaxHp)! - self.heroDeclaration.hpHero
-                if gap <= 10 {
-                    self.heroDeclaration.hpHero += gap
-                } else {
-                    self.heroDeclaration.hpHero += 10
-                }
-                
-                self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
-            }
+           self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
         }
         
         
         if message["request"] as? String == "action" {
             DispatchQueue.main.async {
                 
-                self.label.text = "action pressed"
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
            
                 if self.monsters.count == 0
@@ -251,9 +205,7 @@ extension SecondSceneViewController: WCSessionDelegate {
                             stopTimer(monster: self.juniorMonsterDeclaration)
                             
                         }
-                        
-                        print("AFTER DEAFEAT  -> self.heroDeclaration.hpHero \(self.heroDeclaration.hpHero)")
-                        
+     
                     }
                     
                     if self.potion {
@@ -309,6 +261,9 @@ extension SecondSceneViewController: WCSessionDelegate {
                 }
             }
         }
+   
+        
+      
         
         func changeStatusLock(){
             
@@ -366,12 +321,7 @@ extension SecondSceneViewController: WCSessionDelegate {
             }
             
             if monster.hpMonster <= 0 {
-                if(monster.hadPotion()) {
-                    image.image = UIImage(named: "potion")
-                    self.potion = true
-                } else {
-                    image.isHidden = true
-                }
+                self.potion = monster.setPotion(image: image)
             }
             if self.monsters.count == 0 {
                 self.chest.image = UIImage(named: "lockchest")
