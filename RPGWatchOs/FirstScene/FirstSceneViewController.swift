@@ -156,7 +156,7 @@ extension FirstSceneViewController: WCSessionDelegate {
             DispatchQueue.main.async {
                 
                 print("click on yellow key")
-                if checkIfIsOnImage(image: self.lock) {
+                if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock) {
                     changeStatusLock()
                     replyHandler(["message" : "yellow key used"])
                 }
@@ -175,7 +175,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
                 if self.monsters.count == 0
-                    && checkIfIsOnImage(image: self.chest)
+                    && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.chest)
                     && !self.isChestOpen {
                     replyHandler(["item" : "yellow key"])
                     self.chest.image = UIImage(named: "openchest")
@@ -184,7 +184,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                   
                     
-                } else if (checkIfIsOnImage(image: self.babyMonster)) {
+                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero,image: self.babyMonster) {
                         if self.babyMonsterDeclaration.hpMonster > 0 {
 
                         let monsterName: String = (Monster.TypeMonster.babyMonster).rawValue + " : "
@@ -205,16 +205,19 @@ extension FirstSceneViewController: WCSessionDelegate {
                             
                         }
                     }
-                    
+                    print("self.potion : \(self.potion)")
                     if self.potion {
                         replyHandler(["item" : "potion"])
                         self.potion = false
                         self.babyMonster.removeFromSuperview()
                     }
                     
-                } else if (checkIfIsOnImage(image: self.juniorMonster)) {
+                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
                     if self.juniorMonsterDeclaration.hpMonster > 0 {
                     
+                        
+                        
+                        
                         let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
                         
                         self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
@@ -242,7 +245,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                         self.juniorMonster.removeFromSuperview()
                     }
 
-                } else if (checkIfIsOnImage(image: self.lock))
+                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock)
                     && self.monsters.count == 0 {
                     self.unlock = true
                 }
@@ -322,19 +325,6 @@ extension FirstSceneViewController: WCSessionDelegate {
             if self.monsters.count == 0 {
                 self.chest.image = UIImage(named: "lockchest")
             }
-        }
-        
-       
-        
-        func checkIfIsOnImage(image: UIImageView) -> Bool {
-            if self.hero.frame.maxY >= image.frame.minY
-                && self.hero.frame.maxY <= image.frame.maxY
-                && self.hero.frame.maxX <= image.frame.maxX
-                && self.hero.frame.minX <= image.frame.minX {
-  
-                return true
-            }
-            return false
         }
     }
 }

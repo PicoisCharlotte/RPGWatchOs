@@ -42,7 +42,7 @@
                   moduleName = "RPGWatchOs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lukile/Documents/RPGWatchOs/RPGWatchOs/HomeKit/HomeViewController.swift"
-                  timestampString = "600907833.995007"
+                  timestampString = "600972343.948979"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -57,7 +57,7 @@
                   moduleName = "RPGWatchOs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lukile/Documents/RPGWatchOs/RPGWatchOs/HomeKit/HomeViewController.swift"
-                  timestampString = "600907833.996751"
+                  timestampString = "600972343.952311"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
@@ -105,38 +105,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RPGWatchOs/SecondScene/SecondSceneViewController.swift"
-            timestampString = "600907833.831425"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "session(_:didReceiveMessage:replyHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGWatchOs/SecondScene/SecondSceneViewController.swift"
-            timestampString = "600907833.83152"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "session(_:didReceiveMessage:replyHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "RPGWatchOs/Manager/ChangeViewControllerManager.swift"
             timestampString = "600906600.084281"
             startingColumnNumber = "9223372036854775807"
@@ -144,38 +112,6 @@
             startingLineNumber = "20"
             endingLineNumber = "20"
             landmarkName = "changeScene(viewController:viewControllerName:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGWatchOs/FirstScene/FirstSceneViewController.swift"
-            timestampString = "600907833.8315949"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
-            landmarkName = "defeatMonster(monster:image:monsterName:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RPGWatchOs/Model/Monster.swift"
-            timestampString = "600907890.883601"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "setPotion(image:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

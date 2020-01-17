@@ -37,10 +37,10 @@ class InventoryInterfaceController: WKInterfaceController {
                 session.sendMessage(["request" : "yellow key"], replyHandler: {reply in
                     self.label.setText(reply["version"] as? String)
                 }, errorHandler: {error in
-                    // catch any errors here
                     print("ERROR : ", error)
                 })
                 
+                removeRowInInventory(item: "yellow key")
                 
             } else {
                 session.sendMessage(["request": item], replyHandler: {reply in

@@ -51,4 +51,21 @@ class DirectionManager {
             }
         }
     }
+    
+    func checkIfIsOnImage(heroImage: UIImageView, image: UIImageView) -> Bool {
+        let computeHeroFrame = heroImage.frame.maxX
+            + heroImage.frame.minX
+            + heroImage.frame.width
+        let computeImageFrame = image.frame.minX + image.frame.maxX
+        
+        
+        if heroImage.frame.maxY >= image.frame.minY
+            && heroImage.frame.maxY <= image.frame.maxY
+            && heroImage.frame.maxX <= image.frame.maxX
+            && computeHeroFrame >= computeImageFrame {
+            
+            return true
+        }
+        return false
+    }
 }

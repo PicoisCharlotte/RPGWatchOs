@@ -130,7 +130,7 @@ extension BossSceneViewController: WCSessionDelegate {
                 if self.monsters.count == 0 {
                     self.gameOver.image = UIImage(named: "win")
                     
-                } else if checkIfIsOnImage(image: self.boss)
+                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.boss)
                     && self.bossDeclaration.hpMonster > 0 {
                     let bossName: String = (Monster.TypeMonster.bossMonster).rawValue + " : "
                     self.bossDeclaration.takeDamage(damage: damageTakenByMonster)
@@ -191,17 +191,6 @@ extension BossSceneViewController: WCSessionDelegate {
                 gameOver.image = UIImage(named: "win")
                 
             }
-        }
-        
-        func checkIfIsOnImage(image: UIImageView) -> Bool {
-            if self.hero.frame.maxY >= image.frame.minY
-                && self.hero.frame.maxY <= image.frame.maxY
-                && self.hero.frame.maxX <= image.frame.maxX
-                && self.hero.frame.minX >= image.frame.minX {
-                
-                return true
-            }
-            return false
         }
     }
 }
