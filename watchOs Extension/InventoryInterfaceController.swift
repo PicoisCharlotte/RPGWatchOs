@@ -30,21 +30,34 @@ class InventoryInterfaceController: WKInterfaceController {
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        let item = Inventory.sharedInventory.items[rowIndex]
+        let item = inventoryShared.items[rowIndex]
         if isReachable() {        
-            if Inventory.sharedInventory.items[rowIndex] == "yellow key" {
+            if inventoryShared.items[rowIndex] == "yellow key" {
                 
                 session.sendMessage(["request" : "yellow key"], replyHandler: {reply in
-                    self.label.setText(reply["version"] as? String)
+                    self.label.setText(reply["message"] as? String)
+                    if reply["message"] as? String == "USE YELLOW KEY" {
+                        self.removeRowInInventory(item: "yellow key")
+                        self.reloadTable(tableList: self.inventoryShared.items)
+                    }
+                }, errorHandler: {error in
+                    print("ERROR : ", error)
+                })
+            
+            } else if inventoryShared.items[rowIndex] == "boss key" {
+                session.sendMessage(["request" : "boss key"], replyHandler: {reply in
+                    self.label.setText(reply["message"] as? String)
+                    if reply["message"] as? String == "USE BOSS KEY" {
+                        self.removeRowInInventory(item: "boss key")
+                        self.reloadTable(tableList: self.inventoryShared.items)
+                    }
                 }, errorHandler: {error in
                     print("ERROR : ", error)
                 })
                 
-                removeRowInInventory(item: "yellow key")
-                
             } else {
                 session.sendMessage(["request": item], replyHandler: {reply in
-                    self.label.setText(reply["version"] as? String)
+                    self.label.setText(reply["message"] as? String)
                 }, errorHandler: {error in
                     print("ERROR : ", error)
                 })

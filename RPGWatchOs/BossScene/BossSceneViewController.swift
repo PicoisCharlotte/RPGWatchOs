@@ -91,32 +91,32 @@ extension BossSceneViewController: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         
         if message["request"] as? String == "up" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going up"])
             
             directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "left" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going left"])
             
            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "right" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going right"])
             
             directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "down" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going down"])
             
             directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
 
         }
         
         if message["request"] as? String == "potion" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "USE POTION"])
             
             self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
         }
@@ -124,7 +124,6 @@ extension BossSceneViewController: WCSessionDelegate {
         if message["request"] as? String == "action" {
             DispatchQueue.main.async {
                 
-                self.label.text = "action pressed"
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
                 if self.monsters.count == 0 {
@@ -157,7 +156,6 @@ extension BossSceneViewController: WCSessionDelegate {
                 if self.heroDeclaration.hpHero <= 0 {
                     DispatchQueue.main.async {
                         self.hero.isHidden = true
-                        self.label.isHidden = true
                         self.hpHeroLabel.text = self.CONST_LABEL_HERO + " 0 / " + self.heroMaxHp
                         self.gameOver.image = UIImage(named: "died")
                         session.sendMessage(["msg" : "GameOver"], replyHandler: nil) { (error) in

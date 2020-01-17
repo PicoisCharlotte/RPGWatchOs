@@ -126,45 +126,43 @@ extension FirstSceneViewController: WCSessionDelegate {
         
         
         if message["request"] as? String == "up" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going up"])
             
             directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
           
         }
         
         if message["request"] as? String == "left" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "goind left"])
             
             directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "right" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going right"])
             
             directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "down" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going down"])
             
             directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
         }
         
-        if message["request"] as? String == "yellow key" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+        if message["request"] as? String == "yellow key"
+            && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock){
             
             DispatchQueue.main.async {
-                
-                print("click on yellow key")
-                if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock) {
-                    changeStatusLock()
-                    replyHandler(["message" : "yellow key used"])
-                }
+                changeStatusLock()
+                replyHandler(["message" : "USE YELLOW KEY"])
+                self.unlock = true
+                loadNextView()
             }
         }
         
         if message["request"] as? String == "potion" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "USE POTION"])
             
             self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
         }
@@ -205,7 +203,6 @@ extension FirstSceneViewController: WCSessionDelegate {
                             
                         }
                     }
-                    print("self.potion : \(self.potion)")
                     if self.potion {
                         replyHandler(["item" : "potion"])
                         self.potion = false
@@ -214,10 +211,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                 } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
                     if self.juniorMonsterDeclaration.hpMonster > 0 {
-                    
-                        
-                        
-                        
+        
                         let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
                         
                         self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
@@ -249,17 +243,6 @@ extension FirstSceneViewController: WCSessionDelegate {
                     && self.monsters.count == 0 {
                     self.unlock = true
                 }
-                
-                if self.unlock {
-                    let secondSceneViewController = SecondSceneViewController(nibName: "SecondSceneViewController", bundle: nil)
-                    
-                    secondSceneViewController.heroHpFromPreviousScene = self.heroDeclaration.hpHero
-                    secondSceneViewController.heroDamageFromPreviousScene = self.heroDeclaration.damageHero
-                    
-                        secondSceneViewController.heroMaxHp =  self.heroMaxHp
-                    self.navigationController?.pushViewController(secondSceneViewController, animated: true)
-
-                }
             }
         }
         
@@ -274,6 +257,19 @@ extension FirstSceneViewController: WCSessionDelegate {
                     characteristic.writeValue(0) { (_) in }
                     self.unlock = true
                 }
+            }
+        }
+        
+        func loadNextView() {
+            if self.unlock {
+                let secondSceneViewController = SecondSceneViewController(nibName: "SecondSceneViewController", bundle: nil)
+                
+                secondSceneViewController.heroHpFromPreviousScene = self.heroDeclaration.hpHero
+                secondSceneViewController.heroDamageFromPreviousScene = self.heroDeclaration.damageHero
+                
+                secondSceneViewController.heroMaxHp =  self.heroMaxHp
+                self.navigationController?.pushViewController(secondSceneViewController, animated: true)
+                
             }
         }
         
@@ -314,9 +310,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                     self.monsters.remove(at: index)
                     self.hpMonsterLabel.text = monsterName + " has been defeated"
-
                 }
-              
             }
             if monster.hpMonster <= 0 {
                 self.potion = monster.setPotion(image: image)

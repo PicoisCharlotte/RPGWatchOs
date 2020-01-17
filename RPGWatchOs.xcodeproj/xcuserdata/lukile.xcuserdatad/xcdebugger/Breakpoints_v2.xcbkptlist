@@ -42,7 +42,7 @@
                   moduleName = "RPGWatchOs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lukile/Documents/RPGWatchOs/RPGWatchOs/HomeKit/HomeViewController.swift"
-                  timestampString = "600972343.948979"
+                  timestampString = "600996858.4812551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -57,7 +57,7 @@
                   moduleName = "RPGWatchOs"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/lukile/Documents/RPGWatchOs/RPGWatchOs/HomeKit/HomeViewController.swift"
-                  timestampString = "600972343.952311"
+                  timestampString = "600996858.4845591"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
@@ -113,6 +113,22 @@
             endingLineNumber = "20"
             landmarkName = "changeScene(viewController:viewControllerName:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RPGWatchOs/FirstScene/FirstSceneViewController.swift"
+            timestampString = "600996858.287378"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "loadNextView()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

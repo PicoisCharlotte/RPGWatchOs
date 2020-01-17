@@ -16,7 +16,7 @@
                     <items>
                         <group width="1" alignment="left" id="5lx-1v-NBz">
                             <items>
-                                <label alignment="left" text="Label" id="rzz-8R-wME"/>
+                                <label width="100" alignment="left" text="Label" id="rzz-8R-wME"/>
                                 <button width="30" height="30" alignment="right" backgroundImage="icon-chest" id="z2F-Ah-6ym">
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
@@ -68,7 +68,7 @@
             <objects>
                 <controller identifier="inventory" id="hJp-Qh-y6G" customClass="InventoryInterfaceController" customModule="watchOs_Extension">
                     <items>
-                        <label alignment="left" text="Label" id="RTU-JS-DVN"/>
+                        <label alignment="left" id="RTU-JS-DVN"/>
                         <table alignment="left" id="1pu-Qc-gfx">
                             <items>
                                 <tableRow identifier="inventoryCell" id="ebf-5H-eCY" customClass="InventoryTableRowController" customModule="watchOs_Extension">

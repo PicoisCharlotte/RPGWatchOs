@@ -131,42 +131,42 @@ extension SecondSceneViewController: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         
         if message["request"] as? String == "up" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["mesage" : "going up"])
             
             directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "left" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going left"])
             
             directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "right" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going right"])
             
             directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
         }
         
         if message["request"] as? String == "down" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "going down"])
             
             directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
         }
         
-        if message["request"] as? String == "boss key" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+        if message["request"] as? String == "boss key"
+            && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
             
             DispatchQueue.main.async {
-                if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
-                    changeStatusLock()
-                    replyHandler(["message" : "yellow key used"])
-                }
+                changeStatusLock()
+                replyHandler(["message" : "USE BOSS KEY"])
+                self.unlock = true
+                loadNextView()
             }
         }
         
         if message["request"] as? String == "potion" {
-            replyHandler(["version" : "\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? "No version")"])
+            replyHandler(["message" : "USE POTION"])
             
            self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
         }
@@ -248,23 +248,9 @@ extension SecondSceneViewController: WCSessionDelegate {
                     && self.monsters.count == 0 {
                     self.unlock = true
                 }
-                if self.unlock {
-                   print("unlock")
-                    let bossSceneViewController = BossSceneViewController(nibName: "BossSceneViewController", bundle: nil)
-                    
-                    bossSceneViewController.heroHpFromPreviousScene = self.heroDeclaration.hpHero
-                    bossSceneViewController.heroDamageFromPreviousScene = self.heroDeclaration.damageHero
-                    
-                    bossSceneViewController.heroMaxHp =  self.heroMaxHp
-                    self.navigationController?.pushViewController(bossSceneViewController, animated: true)
-                    
-                }
             }
         }
    
-        
-      
-        
         func changeStatusLock(){
             
             for accessory in self.listLockManager.listLocks ?? []{
@@ -276,6 +262,19 @@ extension SecondSceneViewController: WCSessionDelegate {
                     characteristic.writeValue(0) { (_) in }
                     self.unlock = true
                 }
+            }
+        }
+        
+        func loadNextView() {
+            if self.unlock {
+                let bossSceneViewController = BossSceneViewController(nibName: "BossSceneViewController", bundle: nil)
+                
+                bossSceneViewController.heroHpFromPreviousScene = self.heroDeclaration.hpHero
+                bossSceneViewController.heroDamageFromPreviousScene = self.heroDeclaration.damageHero
+                
+                bossSceneViewController.heroMaxHp =  self.heroMaxHp
+                self.navigationController?.pushViewController(bossSceneViewController, animated: true)
+                
             }
         }
         

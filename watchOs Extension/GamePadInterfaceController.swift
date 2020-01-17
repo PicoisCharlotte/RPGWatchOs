@@ -49,7 +49,7 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     func manageDirection(direction: String) {
         if isReachable() {
             session.sendMessage(["request" : direction], replyHandler: {reply in
-                self.label.setText(reply["version"] as? String)
+                self.label.setText(reply["message"] as? String)
             }, errorHandler: {error in
                 // catch any errors here
                 print("ERROR : ", error)
@@ -78,7 +78,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
         if isSuported() {
@@ -92,7 +91,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
     
