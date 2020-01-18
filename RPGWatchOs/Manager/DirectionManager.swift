@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 class DirectionManager {
+    let CONST_MVMT: CGFloat = 30
+    let CONST_DURATION: TimeInterval = 0.3
+    
     func goUp(heroImage: UIImageView, gameArea: UIView){
         DispatchQueue.main.async {
-            if(heroImage.frame.minY > gameArea.frame.minY) {
-                UIView.animate(withDuration: 0.3, animations: {heroImage.frame.origin.y -= 30})
+            
+            if(heroImage.frame.minY + heroImage.frame.maxY + self.CONST_MVMT > gameArea.frame.minY) {
+                UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.y -= self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the top")
             }
@@ -23,7 +27,7 @@ class DirectionManager {
     func goDown(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
             if heroImage.frame.maxY + heroImage.frame.height < gameArea.frame.height {
-                UIView.animate(withDuration: 0.3, animations: {heroImage.frame.origin.y += 30})
+                UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.y += self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the bottom")
             }
@@ -35,7 +39,7 @@ class DirectionManager {
         DispatchQueue.main.async {
             
             if(heroImage.frame.maxX - heroImage.frame.width > gameArea.frame.minX) {
-                UIView.animate(withDuration: 0.3, animations: {heroImage.frame.origin.x -= 30})
+                UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.x -= self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the left")
             }
@@ -45,27 +49,12 @@ class DirectionManager {
     func goRight(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
             if (heroImage.frame.maxX < gameArea.frame.maxX) {
-                UIView.animate(withDuration: 0.3, animations: {heroImage.frame.origin.x += 30})
+                UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.x += self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the right")
             }
         }
     }
     
-    func checkIfIsOnImage(heroImage: UIImageView, image: UIImageView) -> Bool {
-        let computeHeroFrame = heroImage.frame.maxX
-            + heroImage.frame.minX
-            + heroImage.frame.width
-        let computeImageFrame = image.frame.minX + image.frame.maxX
-        
-        
-        if heroImage.frame.maxY >= image.frame.minY
-            && heroImage.frame.maxY <= image.frame.maxY
-            && heroImage.frame.maxX <= image.frame.maxX
-            && computeHeroFrame >= computeImageFrame {
-            
-            return true
-        }
-        return false
-    }
+ 
 }

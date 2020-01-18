@@ -40,6 +40,7 @@
 		1D7CC1B823CE48F600A7FC5D /* BossSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */; };
 		1D7CC1B923CE48F600A7FC5D /* BossSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */; };
 		1DB3BF4523D10F660011AD2B /* DirectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB3BF4423D10F660011AD2B /* DirectionManager.swift */; };
+		1DCE767223D28439009856A4 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCE767123D28439009856A4 /* ImageManager.swift */; };
 		1DD9A76A23BFAEE600639B23 /* InventoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossSceneViewController.swift; sourceTree = "<group>"; };
 		1D7CC1B723CE48F600A7FC5D /* BossSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BossSceneViewController.xib; sourceTree = "<group>"; };
 		1DB3BF4423D10F660011AD2B /* DirectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionManager.swift; sourceTree = "<group>"; };
+		1DCE767123D28439009856A4 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		1DD9A76923BFAEE600639B23 /* InventoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +265,7 @@
 				1D0C359023CB84890064F64D /* ListLocksManager.swift */,
 				1D0C359223CB84A40064F64D /* SharedHomeManager.swift */,
 				1DB3BF4423D10F660011AD2B /* DirectionManager.swift */,
+				1DCE767123D28439009856A4 /* ImageManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02BCF46023C4C0540044A351 /* FightManager.swift in Sources */,
+				1DCE767223D28439009856A4 /* ImageManager.swift in Sources */,
 				1D0C358F23CB84660064F64D /* Constants.swift in Sources */,
 				1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */,
 				1D0C357F23CB7EEA0064F64D /* LockController.swift in Sources */,

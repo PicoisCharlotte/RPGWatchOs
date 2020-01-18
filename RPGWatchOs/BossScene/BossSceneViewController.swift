@@ -15,6 +15,7 @@ class BossSceneViewController: UIViewController {
     let CONST_LABEL_HERO: String = "Hero HP : "
     
     var directionManager: DirectionManager = DirectionManager()
+    var imageManager: ImageManager = ImageManager()
     
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
@@ -129,7 +130,7 @@ extension BossSceneViewController: WCSessionDelegate {
                 if self.monsters.count == 0 {
                     self.gameOver.image = UIImage(named: "win")
                     
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.boss)
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.boss)
                     && self.bossDeclaration.hpMonster > 0 {
                     let bossName: String = (Monster.TypeMonster.bossMonster).rawValue + " : "
                     self.bossDeclaration.takeDamage(damage: damageTakenByMonster)

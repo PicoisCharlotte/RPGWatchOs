@@ -19,6 +19,7 @@ class FirstSceneViewController: UIViewController {
     let CONST_LABEL_HERO: String = "Hero HP : "
     
     var directionManager: DirectionManager = DirectionManager()
+    var imageManager: ImageManager = ImageManager()
     
     var babyMonsterDeclaration: Monster = Monster.TypeMonster.babyMonster.instance
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
@@ -127,7 +128,7 @@ extension FirstSceneViewController: WCSessionDelegate {
         
         if message["request"] as? String == "up" {
             replyHandler(["message" : "going up"])
-            
+         
             directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
           
         }
@@ -151,7 +152,7 @@ extension FirstSceneViewController: WCSessionDelegate {
         }
         
         if message["request"] as? String == "yellow key"
-            && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock){
+            && self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock){
             
             DispatchQueue.main.async {
                 changeStatusLock()
@@ -173,7 +174,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
                 if self.monsters.count == 0
-                    && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.chest)
+                    && self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.chest)
                     && !self.isChestOpen {
                     replyHandler(["item" : "yellow key"])
                     self.chest.image = UIImage(named: "openchest")
@@ -182,7 +183,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     
                   
                     
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero,image: self.babyMonster) {
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero,image: self.babyMonster) {
                         if self.babyMonsterDeclaration.hpMonster > 0 {
 
                         let monsterName: String = (Monster.TypeMonster.babyMonster).rawValue + " : "
@@ -209,7 +210,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                         self.babyMonster.removeFromSuperview()
                     }
                     
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
                     if self.juniorMonsterDeclaration.hpMonster > 0 {
         
                         let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
@@ -239,7 +240,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                         self.juniorMonster.removeFromSuperview()
                     }
 
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock)
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock)
                     && self.monsters.count == 0 {
                     self.unlock = true
                 }

@@ -15,6 +15,7 @@ class SecondSceneViewController: UIViewController {
     let CONST_LABEL_HERO: String = "Hero HP : "
     
     var directionManager: DirectionManager = DirectionManager()
+    var imageManager: ImageManager = ImageManager()
     
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
@@ -155,7 +156,7 @@ extension SecondSceneViewController: WCSessionDelegate {
         }
         
         if message["request"] as? String == "boss key"
-            && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
+            && self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
             
             DispatchQueue.main.async {
                 changeStatusLock()
@@ -178,14 +179,14 @@ extension SecondSceneViewController: WCSessionDelegate {
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
            
                 if self.monsters.count == 0
-                    && self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.chest)
+                    && self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.chest)
                     && !self.isChestOpen {
                     replyHandler(["item" : "boss key"])
                     self.chest.image = UIImage(named: "openchest")
                     
                     self.isChestOpen = true
                     
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
                     if self.juniorMonsterDeclaration.hpMonster > 0 {
              
                         let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
@@ -214,7 +215,7 @@ extension SecondSceneViewController: WCSessionDelegate {
                         self.juniorMonster.removeFromSuperview()
                     }
                     
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.seniorMonster) {
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.seniorMonster) {
                     if self.seniorMonsterDeclaration.hpMonster > 0 {
                        
                         let monsterName: String = (Monster.TypeMonster.seniorMonster).rawValue + " : "
@@ -244,7 +245,7 @@ extension SecondSceneViewController: WCSessionDelegate {
                         self.seniorMonster.removeFromSuperview()
                     }
                     
-                } else if self.directionManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock)
+                } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock)
                     && self.monsters.count == 0 {
                     self.unlock = true
                 }
