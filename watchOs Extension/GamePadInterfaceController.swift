@@ -33,7 +33,6 @@ class GamePadInterfaceController: WKInterfaceController, WCSessionDelegate {
                 self.label.setText(item! + " dropped")
                 
             }, errorHandler: {error in
-                // catch any errors here
                 print("ERROR : ", error)
             })
             

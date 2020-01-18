@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FirstSceneViewController" customModule="RPGWatchOs" customModuleProvider="target">
             <connections>
+                <outlet property="addAccessory" destination="UR8-Ru-kQx" id="9c8-rE-k8M"/>
                 <outlet property="babyMonster" destination="8ZL-j1-cxa" id="TI7-wD-KHa"/>
                 <outlet property="chest" destination="Yvc-kK-WBh" id="KHb-9V-63E"/>
                 <outlet property="gameArea" destination="zK0-RS-zfk" id="k5Q-cd-ZaQ"/>
@@ -20,7 +21,6 @@
                 <outlet property="hpHeroLabel" destination="sK2-QK-Gl2" id="2Ug-7a-O5N"/>
                 <outlet property="hpMonsterLabel" destination="DnV-Y0-tc2" id="P0C-Fq-y83"/>
                 <outlet property="juniorMonster" destination="94b-AL-fgK" id="quv-a5-xFE"/>
-                <outlet property="label" destination="ymT-vS-rQs" id="XPK-Vp-MEl"/>
                 <outlet property="lock" destination="Kup-1g-ik6" id="E07-Lh-LAW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -51,24 +51,16 @@
                     <color key="textColor" red="0.20036641592937265" green="1" blue="0.12927700598817105" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="etK-lj-scS">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK0-RS-zfk">
                     <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="etK-lj-scS">
-                            <rect key="frame" x="67" y="224" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZL-j1-cxa">
                             <rect key="frame" x="8" y="112" width="55" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymT-vS-rQs">
-                            <rect key="frame" x="130" y="262" width="115" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="94b-AL-fgK">
                             <rect key="frame" x="160" y="408" width="55" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -97,11 +89,15 @@
                 <constraint firstItem="DnV-Y0-tc2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="7uL-bX-xvS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DnV-Y0-tc2" secondAttribute="trailing" constant="10" id="AFu-EI-2kB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sK2-QK-Gl2" secondAttribute="trailing" constant="10" id="D1l-hi-k1o"/>
+                <constraint firstItem="etK-lj-scS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="F6O-PQ-f0Y"/>
+                <constraint firstItem="etK-lj-scS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="I31-lw-xac"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jij-7w-ND3"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="UTD-nw-luS"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ule-bo-jk2"/>
+                <constraint firstAttribute="bottom" secondItem="etK-lj-scS" secondAttribute="bottom" id="YfU-uz-zix"/>
                 <constraint firstItem="sK2-QK-Gl2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ZzN-VL-kxz"/>
                 <constraint firstItem="UR8-Ru-kQx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="biJ-qO-aRH"/>
+                <constraint firstItem="etK-lj-scS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="viZ-dk-FEs"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="130.40000000000001" y="129.98500749625188"/>

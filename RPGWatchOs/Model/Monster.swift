@@ -15,6 +15,9 @@ class Monster : Fight {
     var damageMonster: Int = 5
     var imageMonster: UIImage
     
+    var potion: Bool = false
+
+    
     init(hp: Int, damage: Int, image: UIImage!) {
         self.hpMonster = hp
         self.damageMonster = damage
@@ -31,16 +34,33 @@ class Monster : Fight {
         self.hpMonster -= damage
     }
     
-    func setPotion(image: UIImageView) -> Bool {
-        var potion = false
-            if(Bool.random()) {
-                image.image = UIImage(named: "potion")
-                potion = true
-            } else {
-                image.isHidden = true
-                potion = false
+    func hasPotion(image: UIImageView) -> Bool {
+        if(Bool.random()) {
+            image.image = UIImage(named: "potion")
+            return true
+        } else {
+            image.removeFromSuperview()
+            return false
+        }
+    }
+    
+    func defeatMonster(monsters: [Monster], image: UIImageView, monsterName: String, monsterLabel: UILabel, chestImage: UIImageView?) -> [Monster] {
+        var monstersList = monsters
+        if(self.hpMonster <= 0){
+            if let index = monstersList.firstIndex(where: {
+                $0.imageMonster == self.imageMonster
+            }){
+                
+                monstersList.remove(at: index)
+                monsterLabel.text = monsterName + " has been defeated"
             }
-        return potion
+        }
+
+        if monstersList.count == 0 {
+            chestImage!.image = UIImage(named: "lockchest")
+        }
+        
+        return monstersList
     }
     
     enum TypeMonster: String {

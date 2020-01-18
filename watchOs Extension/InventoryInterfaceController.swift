@@ -18,7 +18,6 @@ class InventoryInterfaceController: WKInterfaceController {
     var list: [String] = []
     
     let inventoryShared = Inventory.sharedInventory
-    
     static let instance = InventoryTableRowController()
 
     override func awake(withContext context: Any?) {
@@ -31,9 +30,8 @@ class InventoryInterfaceController: WKInterfaceController {
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
         let item = inventoryShared.items[rowIndex]
-        if isReachable() {        
+        if isReachable() {
             if inventoryShared.items[rowIndex] == "yellow key" {
-                
                 session.sendMessage(["request" : "yellow key"], replyHandler: {reply in
                     self.label.setText(reply["message"] as? String)
                     if reply["message"] as? String == "USE YELLOW KEY" {
@@ -77,7 +75,6 @@ class InventoryInterfaceController: WKInterfaceController {
     
     func reloadTable(tableList: [String]) {
         inventoryTableView.setNumberOfRows(tableList.count, withRowType: "inventoryCell")
-
         for index in 0 ..< tableList.count {
             if let cellController =
                 self.inventoryTableView.rowController(at: index) as? InventoryTableRowController {
@@ -91,7 +88,6 @@ class InventoryInterfaceController: WKInterfaceController {
     }
     
     func removeRowInInventory(item: String) {
-        print("self.inventoryShared.items : \(self.inventoryShared.items)")
         self.inventoryShared.removeItem(item: item)
     }
 }

@@ -29,12 +29,11 @@ class BossSceneViewController: UIViewController {
     
     var monsters: [Monster] = []
     
+    var isBoss: Bool = true
     
     @IBOutlet var hpBossLabel: UILabel!
     @IBOutlet var hpHeroLabel: UILabel!
-    
-    @IBOutlet var label: UILabel!
-    
+        
     @IBOutlet var gameArea: UIView!
     
     @IBOutlet var hero: UIImageView!
@@ -42,7 +41,7 @@ class BossSceneViewController: UIViewController {
     @IBOutlet var victory: UIImageView!
     
     @IBOutlet var gameOver: UIImageView!
-    
+    @IBOutlet var victoryScreen: UIImageView!
     private var session = WCSession.default
     
     private var timer: Timer?
@@ -68,7 +67,8 @@ class BossSceneViewController: UIViewController {
         hero.image = heroDeclaration.imageHero
         boss.image = UIImage(named: "bossfinal")
         
-        self.hpHeroLabel.text = CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+         self.heroDeclaration.setLabelInitHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
+        
         self.hpBossLabel.text = CONST_MONSTER_HP
         
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
@@ -90,41 +90,29 @@ extension BossSceneViewController: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
-        if message["request"] as? String == "up" {
+        switch message["request"] as? String {
+        case "up":
             replyHandler(["message" : "going up"])
-            
             directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "left" {
-            replyHandler(["message" : "going left"])
-            
-           directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "right" {
-            replyHandler(["message" : "going right"])
-            
-            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "down" {
+            break
+        case "down":
             replyHandler(["message" : "going down"])
-            
             directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
-
-        }
-        
-        if message["request"] as? String == "potion" {
+            break
+        case "left":
+            replyHandler(["message" : "going left"])
+            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
+            break
+        case "right":
+            replyHandler(["message" : "going right"])
+            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
+            break
+        case "potion":
             replyHandler(["message" : "USE POTION"])
-            
             self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
-        }
-        
-        if message["request"] as? String == "action" {
+            break
+        case "action":
             DispatchQueue.main.async {
-                
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
                 if self.monsters.count == 0 {
@@ -136,19 +124,25 @@ extension BossSceneViewController: WCSessionDelegate {
                     self.bossDeclaration.takeDamage(damage: damageTakenByMonster)
                     self.hpBossLabel.text = bossName + String(self.bossDeclaration.hpMonster) + " / " + self.bossMaxHp
                     
-                    defeatMonster(monster: self.bossDeclaration, image: self.boss, monsterName: bossName)
+                    if self.bossDeclaration.hpMonster <= 0
+                        && self.heroDeclaration.hpHero > 0 {
+                        removeFromSuperviewWin()
+                    }
                     
                     guard self.timer == nil else { return }
                     self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
                         timer in self.heroDeclaration.takeDamage(damage: self.bossDeclaration.attack())
                         
-                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                        self.heroDeclaration.updateHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
                         
                         stopTimer(monster: self.bossDeclaration)
                     }
                     
                 }
             }
+            break
+        default:
+            break
         }
         
         func stopTimer(monster: Monster) {
@@ -156,8 +150,8 @@ extension BossSceneViewController: WCSessionDelegate {
                 
                 if self.heroDeclaration.hpHero <= 0 {
                     DispatchQueue.main.async {
-                        self.hero.isHidden = true
-                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + " 0 / " + self.heroMaxHp
+                        self.hero.removeFromSuperview()
+                         self.heroDeclaration.zeroHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
                         self.gameOver.image = UIImage(named: "died")
                         session.sendMessage(["msg" : "GameOver"], replyHandler: nil) { (error) in
                             print("Error sending message: \(error)")
@@ -169,27 +163,14 @@ extension BossSceneViewController: WCSessionDelegate {
             }
         }
         
-        func defeatMonster(monster: Monster, image: UIImageView, monsterName: String) {
-            
-            if(monster.hpMonster <= 0){
-                if let index = self.monsters.firstIndex(where: {
-                    $0.imageMonster == monster.imageMonster
-                }){
-                    
-                    self.monsters.remove(at: index)
-                    self.hpBossLabel.text = monsterName + " has been defeated"
-                    
-                }
-            }
-            
-            if monster.hpMonster <= 0
-                && self.heroDeclaration.hpHero > 0 {
-                image.isHidden = true
-                victory.image = UIImage(named: "victory")
-                hero.isHidden = true
-                gameOver.image = UIImage(named: "win")
-                
-            }
+        func removeFromSuperviewWin() {
+            self.boss.removeFromSuperview()
+            self.victory.image = UIImage(named: "victory")
+            self.hero.removeFromSuperview()
+            self.victoryScreen.image = UIImage(named: "win")
+            self.gameArea.removeFromSuperview()
+            self.hpBossLabel.removeFromSuperview()
+            self.hpHeroLabel.removeFromSuperview()
         }
     }
 }

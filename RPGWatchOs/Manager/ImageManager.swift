@@ -17,7 +17,6 @@ class ImageManager {
             + heroImage.frame.width
         let computeImageFrame = image.frame.minX + image.frame.maxX
         
-        
         if heroImage.frame.maxY >= image.frame.minY
             && heroImage.frame.maxY <= image.frame.maxY
             && heroImage.frame.maxX <= image.frame.maxX

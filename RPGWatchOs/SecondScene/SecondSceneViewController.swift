@@ -12,10 +12,10 @@ import HomeKit
 
 class SecondSceneViewController: UIViewController {
     let CONST_MONSTER_HP: String = "-- / --"
-    let CONST_LABEL_HERO: String = "Hero HP : "
     
     var directionManager: DirectionManager = DirectionManager()
     var imageManager: ImageManager = ImageManager()
+    var fightManager: FightManager = FightManager()
     
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
@@ -30,14 +30,15 @@ class SecondSceneViewController: UIViewController {
     var seniormonsterMaxHp: String = ""
     
     var monsters: [Monster] = []
+    var monstersImageView: [UIImageView] = []
 
     var listLockManager = ListLocksManager.default
     
-    @IBOutlet var label: UILabel!
-
     private var session = WCSession.default
     
-    private var potion: Bool = false
+    private var potionJuniorMonster: Bool = false
+    private var potionSeniorMonster: Bool = false
+
     private var unlock: Bool = false
     
     @IBOutlet var hpMonsterLabel: UILabel!
@@ -53,11 +54,11 @@ class SecondSceneViewController: UIViewController {
     
     @IBOutlet var gameOverImageView: UIImageView!
     
-    private var isChestOpen: Bool = false
     private var timer: Timer?
     
     private let homeManager = HMHomeManager()
     private var selectedHome : HMHome!
+    @IBOutlet var addAccessory: UIButton!
     
     func isSuported() -> Bool {
         return WCSession.isSupported()
@@ -65,6 +66,7 @@ class SecondSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.heroDeclaration.hpHero = heroHpFromPreviousScene
         self.heroDeclaration.damageHero = heroDamageFromPreviousScene
         
@@ -84,7 +86,8 @@ class SecondSceneViewController: UIViewController {
         seniorMonster.image = seniorMonsterDeclaration.imageMonster
         bossLock.image = UIImage(named: "bossdoor")
 
-        self.hpHeroLabel.text = CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+        self.heroDeclaration.setLabelInitHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
+
         self.hpMonsterLabel.text = CONST_MONSTER_HP
 
          print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
@@ -130,94 +133,82 @@ extension SecondSceneViewController: WCSessionDelegate {
     
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
-        if message["request"] as? String == "up" {
+        switch message["request"] as? String {
+        case "up":
             replyHandler(["mesage" : "going up"])
-            
             directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "left" {
-            replyHandler(["message" : "going left"])
-            
-            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "right" {
-            replyHandler(["message" : "going right"])
-            
-            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "down" {
+            break
+        case "down":
             replyHandler(["message" : "going down"])
-            
             directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
-        }
-        
-        if message["request"] as? String == "boss key"
-            && self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
-            
-            DispatchQueue.main.async {
-                changeStatusLock()
-                replyHandler(["message" : "USE BOSS KEY"])
-                self.unlock = true
-                loadNextView()
-            }
-        }
-        
-        if message["request"] as? String == "potion" {
+            break
+        case "left":
+            replyHandler(["message" : "going left"])
+            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
+            break
+        case "right":
+            replyHandler(["message" : "going right"])
+            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
+            break
+        case "potion":
             replyHandler(["message" : "USE POTION"])
-            
-           self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
-        }
-        
-        
-        if message["request"] as? String == "action" {
+            self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
+            break
+        case "boss key":
+            if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
+                DispatchQueue.main.async {
+                    changeStatusLock()
+                    replyHandler(["message" : "USE BOSS KEY"])
+                    self.unlock = true
+                    loadNextView()
+                }
+            }
+            break
+        case "action":
             DispatchQueue.main.async {
                 
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
-           
-                if self.monsters.count == 0
-                    && self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.chest)
-                    && !self.isChestOpen {
+                
+                if self.fightManager.openChest(monsters: self.monsters, hero: self.hero, chest: self.chest) {
                     replyHandler(["item" : "boss key"])
-                    self.chest.image = UIImage(named: "openchest")
-                    
-                    self.isChestOpen = true
                     
                 } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {
                     if self.juniorMonsterDeclaration.hpMonster > 0 {
-             
+                        
                         let monsterName: String = (Monster.TypeMonster.juniorMonster).rawValue + " : "
                         self.juniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
                         self.hpMonsterLabel.text = monsterName + String(self.juniorMonsterDeclaration.hpMonster) + " / " + self.juniormonsterMaxHp
                         
-                        defeatMonster(monster: self.juniorMonsterDeclaration, image: self.juniorMonster, monsterName: monsterName)
+                        self.monsters = self.juniorMonsterDeclaration.defeatMonster(monsters: self.monsters,
+                                                                                    image: self.juniorMonster,
+                                                                                    monsterName: monsterName,
+                                                                                    monsterLabel: self.hpMonsterLabel,
+                                                                                    chestImage: self.chest)
                         
+                        if self.juniorMonsterDeclaration.hpMonster <= 0 {
+                            self.potionJuniorMonster = self.juniorMonsterDeclaration.hasPotion(image: self.juniorMonster)
+                        }
                         
                         
                         guard self.timer == nil else { return }
                         self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
                             timer in self.heroDeclaration.takeDamage(damage: self.juniorMonsterDeclaration.attack())
                             
-                            self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                            self.heroDeclaration.updateHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
                             
                             stopTimer(monster: self.juniorMonsterDeclaration)
-                            
                         }
-     
                     }
                     
-                    if self.potion {
+                    if self.potionJuniorMonster {
                         replyHandler(["item" : "potion"])
-                        self.potion = false
+                        self.potionJuniorMonster = false
                         self.juniorMonster.removeFromSuperview()
                     }
                     
                 } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.seniorMonster) {
                     if self.seniorMonsterDeclaration.hpMonster > 0 {
-                       
+                        
                         let monsterName: String = (Monster.TypeMonster.seniorMonster).rawValue + " : "
                         
                         self.seniorMonsterDeclaration.takeDamage(damage: damageTakenByMonster)
@@ -225,23 +216,30 @@ extension SecondSceneViewController: WCSessionDelegate {
                         self.hpMonsterLabel.text = monsterName + String(self.seniorMonsterDeclaration.hpMonster) + " / " + self.seniormonsterMaxHp
                         
                         
-                        defeatMonster(monster: self.seniorMonsterDeclaration, image: self.seniorMonster, monsterName: monsterName)
+                        self.monsters = self.seniorMonsterDeclaration.defeatMonster(monsters: self.monsters,
+                                                                                    image: self.seniorMonster,
+                                                                                    monsterName: monsterName,
+                                                                                    monsterLabel: self.hpMonsterLabel,
+                                                                                    chestImage: self.chest)
+                        
+                        if self.seniorMonsterDeclaration.hpMonster <= 0 {
+                            self.potionSeniorMonster = self.seniorMonsterDeclaration.hasPotion(image: self.seniorMonster)
+                        }
                         
                         
                         guard self.timer == nil else { return }
                         self.timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) {
                             timer in self.heroDeclaration.takeDamage(damage: self.seniorMonsterDeclaration.attack())
                             
-                            self.hpHeroLabel.text = self.CONST_LABEL_HERO + String(self.heroDeclaration.hpHero) + " / " + self.heroMaxHp
+                            self.heroDeclaration.updateHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
                             
                             stopTimer(monster: self.seniorMonsterDeclaration)
                             
                         }
-                        
                     }
-                    if self.potion {
+                    if self.potionSeniorMonster {
                         replyHandler(["item" : "potion"])
-                        self.potion = false
+                        self.potionSeniorMonster = false
                         self.seniorMonster.removeFromSuperview()
                     }
                     
@@ -250,6 +248,10 @@ extension SecondSceneViewController: WCSessionDelegate {
                     self.unlock = true
                 }
             }
+        
+            break
+        default:
+            break
         }
    
         func changeStatusLock(){
@@ -284,9 +286,19 @@ extension SecondSceneViewController: WCSessionDelegate {
                 
                 if self.heroDeclaration.hpHero <= 0 {
                     DispatchQueue.main.async {
-                        self.hero.isHidden = true
-                        self.label.isHidden = true
-                        self.hpHeroLabel.text = self.CONST_LABEL_HERO + " 0 / " + self.heroMaxHp
+                        self.bossLock.removeFromSuperview()
+                        self.heroDeclaration.zeroHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
+                        self.gameOverImageView.image = UIImage(named: "died")
+                        self.gameArea.removeFromSuperview()
+                        self.hpHeroLabel.removeFromSuperview()
+                        self.hpMonsterLabel.removeFromSuperview()
+                        self.addAccessory.removeFromSuperview()
+                        self.view.backgroundColor = .black
+                        self.hero.removeFromSuperview()
+                        for monster in 0 ..< self.monstersImageView.count {
+                            self.monstersImageView[monster].removeFromSuperview()
+                        }
+
                         self.gameOverImageView.image = UIImage(named: "died")
                         session.sendMessage(["msg" : "GameOver"], replyHandler: nil) { (error) in
                             print("Error sending message: \(error)")
@@ -305,29 +317,5 @@ extension SecondSceneViewController: WCSessionDelegate {
             }
             return nil
         }
-        
-        func defeatMonster(monster: Monster, image: UIImageView, monsterName: String) {
-            
-            if(monster.hpMonster <= 0){
-                if let index = self.monsters.firstIndex(where: {
-                    $0.imageMonster == monster.imageMonster
-                }){
-                    
-                    self.monsters.remove(at: index)
-                    self.hpMonsterLabel.text = monsterName + " has been defeated"
-                    
-                }
-                
-            }
-            
-            if monster.hpMonster <= 0 {
-                self.potion = monster.setPotion(image: image)
-            }
-            if self.monsters.count == 0 {
-                self.chest.image = UIImage(named: "lockchest")
-            }
-        }
     }
 }
-
-

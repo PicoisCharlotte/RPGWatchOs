@@ -16,6 +16,8 @@ class Hero : Fight{
     var damageHero: Int = 5
     var imageHero: UIImage = UIImage(named: "hero")!
     
+    private var timer: Timer?
+    
     init(hp: Int, damage: Int) {
         self.hpHero = hp
         self.damageHero = damage
@@ -27,8 +29,25 @@ class Hero : Fight{
         return Int(arc4random_uniform(UInt32(upper - lower))) + lower
     }
     
+    
     func takeDamage(damage: Int) {
         self.hpHero -= damage
+    }
+    
+    func initHp() -> String {
+        return String(self.hpHero)
+    }
+    
+    func setLabelInitHp(label: UILabel, heroMaxHp: String) {
+        label.text = CONST_LABEL_HERO + self.initHp() + " / " + heroMaxHp
+    }
+    
+    func updateHp(label: UILabel, heroMaxHp: String) {
+        label.text = CONST_LABEL_HERO + self.initHp() + " / " + heroMaxHp
+    }
+    
+    func zeroHp(label: UILabel, heroMaxHp: String) {
+        label.text = CONST_LABEL_HERO + " 0 / " + heroMaxHp
     }
     
     func usePotion(heroLabel: UILabel, heroMaxHp: String) {
@@ -42,7 +61,7 @@ class Hero : Fight{
                 self.hpHero += 10
             }
             
-            heroLabel.text = self.CONST_LABEL_HERO + String(self.hpHero) + " / " + heroMaxHp
+            self.updateHp(label: heroLabel, heroMaxHp:  heroMaxHp)
         }
     }
 }
