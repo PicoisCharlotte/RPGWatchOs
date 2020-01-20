@@ -62,6 +62,9 @@ class FirstSceneViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gameArea.layer.contents = #imageLiteral(resourceName: "scene").cgImage
+        
         self.heroMaxHp = self.heroDeclaration.initHp()
         
         self.babymonsterMaxHp = String(self.babyMonsterDeclaration.hpMonster)
@@ -81,6 +84,10 @@ class FirstSceneViewController: UIViewController {
         
         self.monstersImageView.append(babyMonster)
         self.monstersImageView.append(juniorMonster)
+        
+        print("baby monster maxY: \(self.babyMonster.frame.maxY)")
+        print("baby monster minY: \(self.babyMonster.frame.minY)")
+
 
         lock.image = UIImage(named: "yellowlocklocked")
         
@@ -166,11 +173,15 @@ extension FirstSceneViewController: WCSessionDelegate {
             DispatchQueue.main.async {
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
                 
+                print("hero maxY: \(self.hero.frame.maxY)")
+                print("hero minY: \(self.hero.frame.minY)")
+
+
+                
                 if self.fightManager.openChest(monsters: self.monsters, hero: self.hero, chest: self.chest) {
                     replyHandler(["item" : "yellow key"])
                     
                 } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero,image: self.babyMonster) {
-                    
                     if self.babyMonsterDeclaration.hpMonster > 0 {
                         
                         let monsterName: String = (Monster.TypeMonster.babyMonster).rawValue + " : "

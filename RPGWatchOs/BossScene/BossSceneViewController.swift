@@ -12,7 +12,6 @@ import HomeKit
 
 class BossSceneViewController: UIViewController {
     let CONST_MONSTER_HP: String = "-- / --"
-    let CONST_LABEL_HERO: String = "Hero HP : "
     
     var directionManager: DirectionManager = DirectionManager()
     var imageManager: ImageManager = ImageManager()
@@ -52,6 +51,9 @@ class BossSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gameArea.layer.contents = #imageLiteral(resourceName: "bossscene").cgImage
+
         
         self.heroDeclaration.hpHero = heroHpFromPreviousScene
         self.heroDeclaration.damageHero = heroDamageFromPreviousScene

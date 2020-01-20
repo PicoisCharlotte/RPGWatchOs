@@ -35,5 +35,3 @@ protocol Fight {
     func attack() -> Int
     func takeDamage(damage: Int)
 }
-
-

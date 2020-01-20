@@ -67,6 +67,9 @@ class SecondSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.gameArea.layer.contents = #imageLiteral(resourceName: "scene").cgImage
+
+        
         self.heroDeclaration.hpHero = heroHpFromPreviousScene
         self.heroDeclaration.damageHero = heroDamageFromPreviousScene
         
