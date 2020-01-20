@@ -13,6 +13,8 @@ class DirectionManager {
     let CONST_MVMT: CGFloat = 30
     let CONST_DURATION: TimeInterval = 0.3
     
+    let CONST_MARGIN: CGFloat = 35
+    
     func goUp(heroImage: UIImageView, gameArea: UIView){
         DispatchQueue.main.async {
             
@@ -38,7 +40,7 @@ class DirectionManager {
     func goLeft(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
             
-            if(heroImage.frame.maxX - heroImage.frame.width > gameArea.frame.minX) {
+            if(heroImage.frame.maxX - heroImage.frame.width  > gameArea.frame.minX + self.CONST_MARGIN) {
                 UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.x -= self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the left")
@@ -48,7 +50,7 @@ class DirectionManager {
     
     func goRight(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
-            if (heroImage.frame.maxX < gameArea.frame.maxX) {
+            if (heroImage.frame.maxX < gameArea.frame.maxX - self.CONST_MARGIN) {
                 UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.x += self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the right")
