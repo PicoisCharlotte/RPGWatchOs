@@ -10,8 +10,15 @@ import UIKit
 import WatchConnectivity
 import HomeKit
 
-class FirstSceneViewController: UIViewController {
+class FirstSceneViewController: UIViewController, Observable {
+  
+    
     @IBOutlet var gameOverImageView: UIImageView!
+    
+    var requestState: String = ""
+    let movementObserver = DirectionManager()
+    
+    private lazy var observers = [Observer]()
     
     var unlock: Bool = false
     
@@ -59,9 +66,16 @@ class FirstSceneViewController: UIViewController {
     func isSuported() -> Bool {
         return WCSession.isSupported()
     }
-  
+    
+    func attach(observer: Observer) {
+        observers.append(observer)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.attach(observer: movementObserver)
+        self.attach(observer: heroDeclaration)
         
         self.gameArea.layer.contents = #imageLiteral(resourceName: "scene").cgImage
         
@@ -95,6 +109,7 @@ class FirstSceneViewController: UIViewController {
         
         self.hpMonsterLabel.text = CONST_MONSTER_HP
         
+        
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
     }
     
@@ -119,6 +134,12 @@ class FirstSceneViewController: UIViewController {
         
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
+    
+    func notify() {
+        print("Notifying observers...\n")
+        observers.forEach({ $0.update() })
+    }
+    
 }
 
 extension FirstSceneViewController: WCSessionDelegate {
@@ -134,30 +155,18 @@ extension FirstSceneViewController: WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
+  
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        movementObserver.requestState = message["request"] as! String
+        movementObserver.movement(heroImage: self.hero, gameArea: self.gameArea, replyHandler: replyHandler)
+        self.notify()
+        
+        heroDeclaration.requestState = message["request"] as! String
+        heroDeclaration.usesPotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp, replyHandler: replyHandler)
+        self.notify()
         
         switch message["request"] as? String {
-        case "up":
-            replyHandler(["message" : "going up"])
-            directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "down" :
-            replyHandler(["message" : "going down"])
-            directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "left":
-            replyHandler(["message" : "going left"])
-            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "right":
-            replyHandler(["message" : "going right"])
-            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "potion":
-            replyHandler(["message" : "USE POTION"])
-            self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
-            break
         case "yellow key":
             if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock){
                 
@@ -172,12 +181,7 @@ extension FirstSceneViewController: WCSessionDelegate {
         case "action":
             DispatchQueue.main.async {
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
-                
-                print("hero maxY: \(self.hero.frame.maxY)")
-                print("hero minY: \(self.hero.frame.minY)")
-
-
-                
+            
                 if self.fightManager.openChest(monsters: self.monsters, hero: self.hero, chest: self.chest) {
                     replyHandler(["item" : "yellow key"])
                     

@@ -35,6 +35,8 @@
 		1D0C358F23CB84660064F64D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C358E23CB84660064F64D /* Constants.swift */; };
 		1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C359023CB84890064F64D /* ListLocksManager.swift */; };
 		1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C359223CB84A40064F64D /* SharedHomeManager.swift */; };
+		1D0CC5C023D7318D00A8FBA3 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC5BF23D7318D00A8FBA3 /* Observer.swift */; };
+		1D0CC5C223D7722B00A8FBA3 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CC5C123D7722B00A8FBA3 /* Observable.swift */; };
 		1D0CCBFF23C2042200726119 /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFE23C2042200726119 /* Inventory.swift */; };
 		1D59FDA323C10425007CF087 /* InventoryTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */; };
 		1D7CC1B823CE48F600A7FC5D /* BossSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */; };
@@ -119,6 +121,8 @@
 		1D0C358E23CB84660064F64D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1D0C359023CB84890064F64D /* ListLocksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLocksManager.swift; sourceTree = "<group>"; };
 		1D0C359223CB84A40064F64D /* SharedHomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHomeManager.swift; sourceTree = "<group>"; };
+		1D0CC5BF23D7318D00A8FBA3 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		1D0CC5C123D7722B00A8FBA3 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		1D0CCBFE23C2042200726119 /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		1D59FDA223C10425007CF087 /* InventoryTableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryTableRowController.swift; sourceTree = "<group>"; };
 		1D7CC1B623CE48F600A7FC5D /* BossSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BossSceneViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 		1D0C132C23BCFBB0009F0C28 /* RPGWatchOs */ = {
 			isa = PBXGroup;
 			children = (
+				1D0CC5BC23D72ECD00A8FBA3 /* New Group */,
 				1D0C136423BCFBE6009F0C28 /* FirstScene */,
 				1D08043323CCDBEF005CFCF7 /* SecondScene */,
 				1D7CC1B523CE48DD00A7FC5D /* BossScene */,
@@ -268,6 +273,15 @@
 				1DCE767123D28439009856A4 /* ImageManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		1D0CC5BC23D72ECD00A8FBA3 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				1D0CC5BF23D7318D00A8FBA3 /* Observer.swift */,
+				1D0CC5C123D7722B00A8FBA3 /* Observable.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		1D7CC1B523CE48DD00A7FC5D /* BossScene */ = {
@@ -425,12 +439,14 @@
 				1D0C358B23CB83EC0064F64D /* LocksSearchViewControllerViewController.swift in Sources */,
 				1D0C136723BCFC08009F0C28 /* FirstSceneViewController.swift in Sources */,
 				1D0C359323CB84A40064F64D /* SharedHomeManager.swift in Sources */,
+				1D0CC5C023D7318D00A8FBA3 /* Observer.swift in Sources */,
 				1D7CC1B823CE48F600A7FC5D /* BossSceneViewController.swift in Sources */,
 				1D0C358723CB83A00064F64D /* HomeViewController.swift in Sources */,
 				1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */,
 				1D0C359123CB84890064F64D /* ListLocksManager.swift in Sources */,
 				1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */,
 				1DB3BF4523D10F660011AD2B /* DirectionManager.swift in Sources */,
+				1D0CC5C223D7722B00A8FBA3 /* Observable.swift in Sources */,
 				1D0C358323CB7F640064F64D /* ConfigHomeKitViewController.swift in Sources */,
 				1D0C136C23BD0708009F0C28 /* RedrawImageView.swift in Sources */,
 			);

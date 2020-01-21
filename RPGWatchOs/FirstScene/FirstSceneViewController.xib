@@ -57,12 +57,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zK0-RS-zfk">
                     <rect key="frame" x="0.0" y="90" width="375" height="577"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZL-j1-cxa">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZL-j1-cxa">
                             <rect key="frame" x="60" y="118" width="70" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="94b-AL-fgK">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="94b-AL-fgK">
                             <rect key="frame" x="160" y="408" width="70" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -70,16 +70,20 @@
                             <rect key="frame" x="156" y="248" width="80" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-ah-2bH">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIh-ah-2bH">
                             <rect key="frame" x="155" y="8" width="65" height="54"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kup-1g-ik6">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kup-1g-ik6">
                             <rect key="frame" x="265" y="517" width="51" height="52"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="KR2-Wm-yP7"/>
+                        <constraint firstAttribute="height" constant="577" id="lZ7-Py-k3H"/>
+                    </constraints>
                     <viewLayoutGuide key="safeArea" id="oQe-kr-f0V"/>
                 </view>
             </subviews>
@@ -88,6 +92,7 @@
                 <constraint firstItem="UR8-Ru-kQx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3XI-qX-2G6"/>
                 <constraint firstItem="zK0-RS-zfk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="70" id="5s9-7T-Peo"/>
                 <constraint firstItem="DnV-Y0-tc2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="7uL-bX-xvS"/>
+                <constraint firstItem="zK0-RS-zfk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="8BO-QB-LKY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DnV-Y0-tc2" secondAttribute="trailing" constant="10" id="AFu-EI-2kB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sK2-QK-Gl2" secondAttribute="trailing" constant="10" id="D1l-hi-k1o"/>
                 <constraint firstItem="etK-lj-scS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="F6O-PQ-f0Y"/>
@@ -98,6 +103,9 @@
                 <constraint firstAttribute="bottom" secondItem="etK-lj-scS" secondAttribute="bottom" id="YfU-uz-zix"/>
                 <constraint firstItem="sK2-QK-Gl2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ZzN-VL-kxz"/>
                 <constraint firstItem="UR8-Ru-kQx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="biJ-qO-aRH"/>
+                <constraint firstItem="zK0-RS-zfk" firstAttribute="top" secondItem="sK2-QK-Gl2" secondAttribute="bottom" constant="29" id="i15-K7-kGU"/>
+                <constraint firstItem="zK0-RS-zfk" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="n3t-8a-2Sx"/>
+                <constraint firstItem="zK0-RS-zfk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nqV-W8-o1A"/>
                 <constraint firstItem="etK-lj-scS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="viZ-dk-FEs"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

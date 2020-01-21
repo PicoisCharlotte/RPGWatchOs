@@ -10,8 +10,13 @@ import UIKit
 import WatchConnectivity
 import HomeKit
 
-class SecondSceneViewController: UIViewController {
+class SecondSceneViewController: UIViewController, Observable {
     let CONST_MONSTER_HP: String = "-- / --"
+    
+    var requestState: String = ""
+    let movementObserver = DirectionManager()
+    
+    private lazy var observers = [Observer]()
     
     var directionManager: DirectionManager = DirectionManager()
     var imageManager: ImageManager = ImageManager()
@@ -20,7 +25,7 @@ class SecondSceneViewController: UIViewController {
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
-    var heroDeclaration: Hero = Hero(hp: 0, damage: 0)
+    var heroDeclaration: Hero = Hero()
     
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
     var seniorMonsterDeclaration: Monster = Monster.TypeMonster.seniorMonster.instance
@@ -64,11 +69,17 @@ class SecondSceneViewController: UIViewController {
         return WCSession.isSupported()
     }
     
+    func attach(observer: Observer) {
+        observers.append(observer)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.attach(observer: movementObserver)
+        self.attach(observer: heroDeclaration)
+        
         self.gameArea.layer.contents = #imageLiteral(resourceName: "scene").cgImage
-
         
         self.heroDeclaration.hpHero = heroHpFromPreviousScene
         self.heroDeclaration.damageHero = heroDamageFromPreviousScene
@@ -117,6 +128,11 @@ class SecondSceneViewController: UIViewController {
     @IBAction func addAccessory(_ sender: Any) {
         self.navigationController?.pushViewController(HomeViewController(), animated: true)
     }
+    
+    func notify() {
+        print("Notifying observers...\n")
+        observers.forEach({ $0.update() })
+    }
    
 }
 
@@ -136,27 +152,15 @@ extension SecondSceneViewController: WCSessionDelegate {
     
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        movementObserver.requestState = message["request"] as! String
+        movementObserver.movement(heroImage: self.hero, gameArea: self.gameArea, replyHandler: replyHandler)
+        self.notify()
+        
+        heroDeclaration.requestState = message["request"] as! String
+        heroDeclaration.usesPotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp, replyHandler: replyHandler)
+        self.notify()
+        
         switch message["request"] as? String {
-        case "up":
-            replyHandler(["mesage" : "going up"])
-            directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "down":
-            replyHandler(["message" : "going down"])
-            directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "left":
-            replyHandler(["message" : "going left"])
-            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "right":
-            replyHandler(["message" : "going right"])
-            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "potion":
-            replyHandler(["message" : "USE POTION"])
-            self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
-            break
         case "boss key":
             if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.bossLock) {
                 DispatchQueue.main.async {

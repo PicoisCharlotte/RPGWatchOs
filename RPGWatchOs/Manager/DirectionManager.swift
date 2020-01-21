@@ -8,12 +8,15 @@
 
 import Foundation
 import UIKit
+import WatchConnectivity
 
-class DirectionManager {
+class DirectionManager: Observer {
     let CONST_MVMT: CGFloat = 30
     let CONST_DURATION: TimeInterval = 0.3
     
     let CONST_MARGIN: CGFloat = 35
+    
+    var requestState: String = ""
     
     func goUp(heroImage: UIImageView, gameArea: UIView){
         DispatchQueue.main.async {
@@ -58,5 +61,32 @@ class DirectionManager {
         }
     }
     
- 
+    func update() {
+        print("in update direction :  \(self.requestState) reacted to event")  
+    }
+   
+    func movement(heroImage: UIImageView, gameArea: UIView, replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        switch self.requestState {
+            case "up":
+                replyHandler(["message" : "going up"])
+                self.goUp(heroImage: heroImage, gameArea: gameArea)
+                break
+            case "down":
+                replyHandler(["message" : "going down"])
+                self.goDown(heroImage: heroImage, gameArea: gameArea)
+                break
+            case "left":
+                replyHandler(["message" : "going left"])
+                self.goLeft(heroImage: heroImage, gameArea: gameArea)
+                break
+            case "right":
+                replyHandler(["message" : "going right"])
+                self.goRight(heroImage: heroImage, gameArea: gameArea)
+                break
+            default:
+                break
+        }
+    }
 }
+

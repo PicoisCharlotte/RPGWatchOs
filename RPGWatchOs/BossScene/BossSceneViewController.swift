@@ -10,8 +10,13 @@ import UIKit
 import WatchConnectivity
 import HomeKit
 
-class BossSceneViewController: UIViewController {
+class BossSceneViewController: UIViewController, Observable {
     let CONST_MONSTER_HP: String = "-- / --"
+    
+    var requestState: String = ""
+    let movementObserver = DirectionManager()
+    
+    private lazy var observers = [Observer]()
     
     var directionManager: DirectionManager = DirectionManager()
     var imageManager: ImageManager = ImageManager()
@@ -19,7 +24,7 @@ class BossSceneViewController: UIViewController {
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
-    var heroDeclaration: Hero = Hero(hp: 0, damage: 0)
+    var heroDeclaration: Hero = Hero()
     
     var bossDeclaration: Monster = Monster.TypeMonster.bossMonster.instance
     
@@ -49,11 +54,17 @@ class BossSceneViewController: UIViewController {
         return WCSession.isSupported()
     }
     
+    func attach(observer: Observer) {
+        observers.append(observer)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.attach(observer: movementObserver)
+        self.attach(observer: heroDeclaration)
+        
         self.gameArea.layer.contents = #imageLiteral(resourceName: "bossscene").cgImage
-
         
         self.heroDeclaration.hpHero = heroHpFromPreviousScene
         self.heroDeclaration.damageHero = heroDamageFromPreviousScene
@@ -76,6 +87,11 @@ class BossSceneViewController: UIViewController {
         print("isPaired?: \(session.isPaired), isWatchAppInstalled?: \(session.isWatchAppInstalled)")
         
     }
+    
+    func notify() {
+        print("Notifying observers...\n")
+        observers.forEach({ $0.update() })
+    }
 }
 
 extension BossSceneViewController: WCSessionDelegate {
@@ -92,27 +108,15 @@ extension BossSceneViewController: WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        movementObserver.requestState = message["request"] as! String
+        movementObserver.movement(heroImage: self.hero, gameArea: self.gameArea, replyHandler: replyHandler)
+        self.notify()
+        
+        heroDeclaration.requestState = message["request"] as! String
+        heroDeclaration.usesPotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp, replyHandler: replyHandler)
+        self.notify()
+        
         switch message["request"] as? String {
-        case "up":
-            replyHandler(["message" : "going up"])
-            directionManager.goUp(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "down":
-            replyHandler(["message" : "going down"])
-            directionManager.goDown(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "left":
-            replyHandler(["message" : "going left"])
-            directionManager.goLeft(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "right":
-            replyHandler(["message" : "going right"])
-            directionManager.goRight(heroImage: self.hero, gameArea: self.gameArea)
-            break
-        case "potion":
-            replyHandler(["message" : "USE POTION"])
-            self.heroDeclaration.usePotion(heroLabel: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
-            break
         case "action":
             DispatchQueue.main.async {
                 var damageTakenByMonster: Int = self.heroDeclaration.attack()
@@ -128,7 +132,10 @@ extension BossSceneViewController: WCSessionDelegate {
                     
                     if self.bossDeclaration.hpMonster <= 0
                         && self.heroDeclaration.hpHero > 0 {
-                        removeFromSuperviewWin()
+                        removeFromSuperview()
+                        self.victory.image = UIImage(named: "victory")
+                        self.victoryScreen.image = UIImage(named: "win")
+
                     }
                     
                     guard self.timer == nil else { return }
@@ -154,6 +161,7 @@ extension BossSceneViewController: WCSessionDelegate {
                     DispatchQueue.main.async {
                         self.hero.removeFromSuperview()
                          self.heroDeclaration.zeroHp(label: self.hpHeroLabel, heroMaxHp: self.heroMaxHp)
+                        removeFromSuperview()
                         self.gameOver.image = UIImage(named: "died")
                         session.sendMessage(["msg" : "GameOver"], replyHandler: nil) { (error) in
                             print("Error sending message: \(error)")
@@ -165,11 +173,9 @@ extension BossSceneViewController: WCSessionDelegate {
             }
         }
         
-        func removeFromSuperviewWin() {
+        func removeFromSuperview() {
             self.boss.removeFromSuperview()
-            self.victory.image = UIImage(named: "victory")
             self.hero.removeFromSuperview()
-            self.victoryScreen.image = UIImage(named: "win")
             self.gameArea.removeFromSuperview()
             self.hpBossLabel.removeFromSuperview()
             self.hpHeroLabel.removeFromSuperview()

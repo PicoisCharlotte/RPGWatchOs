@@ -16,7 +16,7 @@
                     <items>
                         <group width="1" alignment="left" id="5lx-1v-NBz">
                             <items>
-                                <label width="100" alignment="left" text="Label" id="rzz-8R-wME"/>
+                                <label width="100" alignment="left" id="rzz-8R-wME"/>
                                 <button width="30" height="30" alignment="right" backgroundImage="icon-chest" id="z2F-Ah-6ym">
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
