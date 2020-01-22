@@ -24,7 +24,7 @@ class BossSceneViewController: UIViewController, Observable {
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
-    var heroDeclaration: Hero = Hero()
+    var heroDeclaration: Hero = Hero(hp: 0, damage: 0)
     
     var bossDeclaration: Monster = Monster.TypeMonster.bossMonster.instance
     

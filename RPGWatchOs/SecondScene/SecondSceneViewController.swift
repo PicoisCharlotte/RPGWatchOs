@@ -25,7 +25,7 @@ class SecondSceneViewController: UIViewController, Observable {
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
-    var heroDeclaration: Hero = Hero()
+    var heroDeclaration: Hero = Hero(hp: 0, damage: 0)
     
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
     var seniorMonsterDeclaration: Monster = Monster.TypeMonster.seniorMonster.instance
