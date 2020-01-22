@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		027B987A23D8D2DB00172234 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027B987923D8D2DB00172234 /* HomeKit.framework */; };
 		02BCF46023C4C0540044A351 /* FightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF45F23C4C0540044A351 /* FightManager.swift */; };
 		1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */; };
 		1D08043723CCDC0D005CFCF7 /* SecondSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */; };
@@ -89,6 +90,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		027B987723D8D2DB00172234 /* RPGWatchOs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RPGWatchOs.entitlements; sourceTree = "<group>"; };
+		027B987923D8D2DB00172234 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		02BCF45F23C4C0540044A351 /* FightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightManager.swift; sourceTree = "<group>"; };
 		1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSceneViewController.swift; sourceTree = "<group>"; };
 		1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondSceneViewController.xib; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				027B987A23D8D2DB00172234 /* HomeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +154,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		027B987823D8D2DB00172234 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				027B987923D8D2DB00172234 /* HomeKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1D0726D523C8A6670014D43C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +195,7 @@
 				1D0C134223BCFBD6009F0C28 /* watchOs */,
 				1D0C135123BCFBD6009F0C28 /* watchOs Extension */,
 				1D0C132B23BCFBB0009F0C28 /* Products */,
+				027B987823D8D2DB00172234 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,6 +212,7 @@
 		1D0C132C23BCFBB0009F0C28 /* RPGWatchOs */ = {
 			isa = PBXGroup;
 			children = (
+				027B987723D8D2DB00172234 /* RPGWatchOs.entitlements */,
 				1D0CC5BC23D72ECD00A8FBA3 /* New Group */,
 				1D0C136423BCFBE6009F0C28 /* FirstScene */,
 				1D08043323CCDBEF005CFCF7 /* SecondScene */,
@@ -619,6 +633,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RPGWatchOs/RPGWatchOs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RPGWatchOs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -636,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RPGWatchOs/RPGWatchOs.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = RPGWatchOs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

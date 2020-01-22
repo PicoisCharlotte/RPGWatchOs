@@ -17,7 +17,6 @@ class Monster : Fight {
     
     var potion: Bool = false
 
-    
     init(hp: Int, damage: Int, image: UIImage!) {
         self.hpMonster = hp
         self.damageMonster = damage
@@ -39,7 +38,7 @@ class Monster : Fight {
             image.image = UIImage(named: "potion")
             return true
         } else {
-            image.removeFromSuperview()
+            image.isHidden = true
             return false
         }
     }

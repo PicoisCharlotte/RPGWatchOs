@@ -24,7 +24,7 @@ class BossSceneViewController: UIViewController, Observable {
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
-    var heroDeclaration: Hero = Hero()
+    var heroDeclaration: Hero = Hero(hp: 200, damage: 5)
     
     var bossDeclaration: Monster = Monster.TypeMonster.bossMonster.instance
     
@@ -40,6 +40,7 @@ class BossSceneViewController: UIViewController, Observable {
         
     @IBOutlet var gameArea: UIView!
     
+    @IBOutlet var viewGameArea: UIView!
     @IBOutlet var hero: UIImageView!
     @IBOutlet var boss: UIImageView!
     @IBOutlet var victory: UIImageView!
@@ -109,7 +110,7 @@ extension BossSceneViewController: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         movementObserver.requestState = message["request"] as! String
-        movementObserver.movement(heroImage: self.hero, gameArea: self.gameArea, replyHandler: replyHandler)
+        movementObserver.movement(heroImage: self.hero, gameArea: self.viewGameArea, replyHandler: replyHandler)
         self.notify()
         
         heroDeclaration.requestState = message["request"] as! String

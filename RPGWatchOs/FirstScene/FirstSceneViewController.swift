@@ -49,6 +49,7 @@ class FirstSceneViewController: UIViewController, Observable {
     @IBOutlet var lock: UIImageView!
     
     @IBOutlet var gameArea: UIView!
+    @IBOutlet var viewGameArea: UIView!
     
     @IBOutlet var babyMonster: UIImageView!
     @IBOutlet var juniorMonster: UIImageView!
@@ -101,7 +102,6 @@ class FirstSceneViewController: UIViewController, Observable {
         
         print("baby monster maxY: \(self.babyMonster.frame.maxY)")
         print("baby monster minY: \(self.babyMonster.frame.minY)")
-
 
         lock.image = UIImage(named: "yellowlocklocked")
         
@@ -159,7 +159,7 @@ extension FirstSceneViewController: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         movementObserver.requestState = message["request"] as! String
-        movementObserver.movement(heroImage: self.hero, gameArea: self.gameArea, replyHandler: replyHandler)
+        movementObserver.movement(heroImage: self.hero, gameArea: self.viewGameArea, replyHandler: replyHandler)
         self.notify()
         
         heroDeclaration.requestState = message["request"] as! String
@@ -215,7 +215,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     if self.potionBabyMonster {
                         replyHandler(["item" : "potion"])
                         self.potionBabyMonster = false
-                        self.babyMonster.removeFromSuperview()
+                        self.babyMonster.isHidden = true
                     }
                     
                 } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.juniorMonster) {

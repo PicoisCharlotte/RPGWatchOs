@@ -21,7 +21,7 @@ class DirectionManager: Observer {
     func goUp(heroImage: UIImageView, gameArea: UIView){
         DispatchQueue.main.async {
             
-            if(heroImage.frame.minY + heroImage.frame.maxY + self.CONST_MVMT > gameArea.frame.minY) {
+            if(heroImage.frame.minY > 0) {
                 UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.y -= self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the top")
@@ -31,7 +31,7 @@ class DirectionManager: Observer {
     
     func goDown(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
-            if heroImage.frame.maxY + heroImage.frame.height < gameArea.frame.height {
+            if heroImage.frame.maxY < gameArea.frame.size.height - (heroImage.frame.size.height / 2) {
                 UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.y += self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the bottom")
@@ -43,7 +43,7 @@ class DirectionManager: Observer {
     func goLeft(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
             
-            if(heroImage.frame.maxX - heroImage.frame.width  > gameArea.frame.minX + self.CONST_MARGIN) {
+            if(heroImage.frame.minX > 0) {
                 UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.x -= self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the left")
@@ -53,7 +53,7 @@ class DirectionManager: Observer {
     
     func goRight(heroImage: UIImageView, gameArea: UIView) {
         DispatchQueue.main.async {
-            if (heroImage.frame.maxX < gameArea.frame.maxX - self.CONST_MARGIN) {
+            if (heroImage.frame.maxX < gameArea.frame.size.width) {
                 UIView.animate(withDuration: self.CONST_DURATION, animations: {heroImage.frame.origin.x += self.CONST_MVMT})
             } else {
                 print("Image goes out of screen on the right")

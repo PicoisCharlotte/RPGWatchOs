@@ -25,7 +25,7 @@ class SecondSceneViewController: UIViewController, Observable {
     var heroHpFromPreviousScene: Int = 0
     var heroDamageFromPreviousScene: Int = 0
     
-    var heroDeclaration: Hero = Hero()
+    var heroDeclaration: Hero = Hero(hp: 200, damage: 5)
     
     var juniorMonsterDeclaration: Monster = Monster.TypeMonster.juniorMonster.instance
     var seniorMonsterDeclaration: Monster = Monster.TypeMonster.seniorMonster.instance
@@ -52,6 +52,7 @@ class SecondSceneViewController: UIViewController, Observable {
     @IBOutlet var hero: UIImageView!
     
     @IBOutlet var gameArea: UIView!
+    @IBOutlet var viewGameArea: UIView!
     @IBOutlet var chest: UIImageView!
     @IBOutlet var bossLock: UIImageView!
     @IBOutlet var juniorMonster: UIImageView!
@@ -153,7 +154,7 @@ extension SecondSceneViewController: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         movementObserver.requestState = message["request"] as! String
-        movementObserver.movement(heroImage: self.hero, gameArea: self.gameArea, replyHandler: replyHandler)
+        movementObserver.movement(heroImage: self.hero, gameArea: self.viewGameArea, replyHandler: replyHandler)
         self.notify()
         
         heroDeclaration.requestState = message["request"] as! String
