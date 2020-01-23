@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		027B987A23D8D2DB00172234 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027B987923D8D2DB00172234 /* HomeKit.framework */; };
+		027B987C23DA557600172234 /* SecondSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027B987B23DA557600172234 /* SecondSceneViewController.xib */; };
 		02BCF46023C4C0540044A351 /* FightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCF45F23C4C0540044A351 /* FightManager.swift */; };
 		1D08043623CCDC0D005CFCF7 /* SecondSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */; };
-		1D08043723CCDC0D005CFCF7 /* SecondSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */; };
 		1D09042F23C37CD9005F7CB8 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09042723C36DC5005F7CB8 /* Monster.swift */; };
 		1D09043023C37CDB005F7CB8 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09042A23C36FD8005F7CB8 /* Hero.swift */; };
 		1D0C132E23BCFBB0009F0C28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0C132D23BCFBB0009F0C28 /* AppDelegate.swift */; };
@@ -92,9 +92,9 @@
 /* Begin PBXFileReference section */
 		027B987723D8D2DB00172234 /* RPGWatchOs.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RPGWatchOs.entitlements; sourceTree = "<group>"; };
 		027B987923D8D2DB00172234 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		027B987B23DA557600172234 /* SecondSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SecondSceneViewController.xib; path = RPGWatchOs/SecondScene/SecondSceneViewController.xib; sourceTree = SOURCE_ROOT; };
 		02BCF45F23C4C0540044A351 /* FightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightManager.swift; sourceTree = "<group>"; };
 		1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSceneViewController.swift; sourceTree = "<group>"; };
-		1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondSceneViewController.xib; sourceTree = "<group>"; };
 		1D09042723C36DC5005F7CB8 /* Monster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
 		1D09042A23C36FD8005F7CB8 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		1D0C132A23BCFBB0009F0C28 /* RPGWatchOs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPGWatchOs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				1D08043423CCDC0D005CFCF7 /* SecondSceneViewController.swift */,
-				1D08043523CCDC0D005CFCF7 /* SecondSceneViewController.xib */,
+				027B987B23DA557600172234 /* SecondSceneViewController.xib */,
 			);
 			path = SecondScene;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 				1D0C358823CB83A00064F64D /* HomeViewController.xib in Resources */,
 				1D0C358423CB7F640064F64D /* ConfigHomeKitViewController.xib in Resources */,
 				1D0C133523BCFBB2009F0C28 /* Assets.xcassets in Resources */,
-				1D08043723CCDC0D005CFCF7 /* SecondSceneViewController.xib in Resources */,
+				027B987C23DA557600172234 /* SecondSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

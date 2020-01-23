@@ -249,7 +249,7 @@ extension FirstSceneViewController: WCSessionDelegate {
                     if self.potionJuniorMonster {
                         replyHandler(["item" : "potion"])
                         self.potionJuniorMonster = false
-                        self.juniorMonster.removeFromSuperview()
+                        self.juniorMonster.isHidden = true
                     }
                     
                 } else if self.imageManager.checkIfIsOnImage(heroImage: self.hero, image: self.lock)
