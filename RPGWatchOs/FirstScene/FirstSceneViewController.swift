@@ -290,7 +290,6 @@ extension FirstSceneViewController: WCSessionDelegate {
             }
         }
         
-        
         func stopTimer(monster: Monster) {
             if self.heroDeclaration.hpHero <= 0 || monster.hpMonster <= 0 {
                 

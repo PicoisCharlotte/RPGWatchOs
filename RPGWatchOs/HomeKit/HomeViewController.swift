@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         SharedHomeManager.default.manager.addHome(withName: "RPG Home") {
             (home, err) in
             if err != nil {
-                self.presentAlert(message: "Impossible de créer la maison avec le nom '\("RPG Home")'")
+                //self.presentAlert(message: "Impossible de créer la maison avec le nom '\("RPG Home")'")
                 return
             }
             print(err as Any)
